@@ -13,7 +13,7 @@ import parse.Parse;
  */
 public class FinancialRecordsController {
   /**
-   * Atribut financialrecords.FinancialRecordModel
+   * Atribut financialrecords.FinancialRecordModel.
    */
   private FinancialRecordModel frmodel;
 
