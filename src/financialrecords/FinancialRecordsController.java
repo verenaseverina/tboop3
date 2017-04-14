@@ -1,23 +1,72 @@
 package financialrecords;
 
-import java.util.ArrayList;
-import java.util.Date;
+import financialrecords.records.Record;
+import parse.Parse;
 
 public class FinancialRecordsController {
-  private FinancialRecordsModel frmodel;
+  private FinancialRecordModel frmodel;
 
-  public FinancialRecordsController() {
+  private int findDateIncome(Record rec) {
+    int idx = 0;
+    boolean found = false;
+    String compare = rec.getDate();
 
+    while ((idx < frmodel.getIncome().size()) && !found) {
+      if (frmodel.getIncome().get(idx).getDate().equals(compare)) {
+        found = true;
+      } else {
+        idx++;
+      }
+    }
+
+    return idx;
   }
 
-  public void addIncome(Records rec) {
+  private int findDateOutcome(Record rec) {
     int idx = 0;
-    frmodel.setIncome(idx,rec); // kalo yang berdasarkan tanggal gimana?
+    boolean found = false;
+    String compare = rec.getDate();
+
+    while ((idx < frmodel.getOutcome().size()) && !found) {
+      if (frmodel.getOutcome().get(idx).getDate().equals(compare)) {
+        found = true;
+      } else {
+        idx++;
+      }
+    }
+
+    return idx;
   }
 
-  public void addOutcome(Records rec) {
-    int idx = 0;
-    frmodel.setOutcome(idx,rec); // kalo yang berdasarkan tanggal gimana?
+  public FinancialRecordsController(Parse parser) {
+    for (int idx = 0; idx < parser.getIn().size(); idx++) {
+      frmodel.setIncome("add", idx, parser.getIn().get(idx));
+    }
+    
+    for (int idx = 0; idx < parser.getOut().size(); idx++) {
+      frmodel.setOutcome("add", idx, parser.getOut().get(idx));
+    }
+    
+    long sumIn = 0;
+    for (int idx = 0; idx < frmodel.getIncome().size(); idx++) {
+      sumIn += frmodel.getIncome().get(idx).getAmount();
+    }
+
+    long sumOut = 0;
+    for (int idx = 0; idx < frmodel.getOutcome().size(); idx++) {
+      sumOut += frmodel.getOutcome().get(idx).getAmount();
+    }
+    frmodel.setBalance(sumIn-sumOut);
+  }
+
+  public void addIncome(Record rec) {
+    int idx = findDateIncome(rec);
+    frmodel.setIncome("add", idx, rec);
+  }
+
+  public void addOutcome(Record rec) {
+    int idx = findDateOutcome(rec);
+    frmodel.setOutcome("add", idx, rec);
   }
 
   public void countBalance() {
@@ -27,8 +76,8 @@ public class FinancialRecordsController {
   public long sumIncome() {
     long sum = 0;
 
-    for (int i = 0; i < frmodel.getIncome().size(); i++) {
-      sum += frmodel.getIncome().get(i).amount;
+    for (int idx = 0; idx < frmodel.getIncome().size(); idx++) {
+      sum += frmodel.getIncome().get(idx).getAmount();
     }
 
     return sum;
@@ -37,30 +86,36 @@ public class FinancialRecordsController {
   public long sumOutcome() {
     long sum = 0;
 
-    for (int i = 0; i < frmodel.getOutcome().size(); i++) {
-      sum += frmodel.getOutcome().get(i).amount;
+    for (int idx = 0; idx < frmodel.getOutcome().size(); idx++) {
+      sum += frmodel.getOutcome().get(idx).getAmount();
     }
 
     return sum;
   }
 
   public long countRecommendedOutcome() {
-
+    return 0;
   }
 
-  public void deleteIncome(int i) {
-
+  public void deleteIncome(int idx) {
+    Record temprec = new Record("","0","","");
+    frmodel.setIncome("add", idx, temprec);
   }
 
-  public void deleteOutcome(int i) {
-
+  public void deleteOutcome(int idx) {
+    Record temprec = new Record("","0","","");
+    frmodel.setOutcome("add", idx, temprec);
   }
 
-  public void updateOutcome(int i, int amount, String category, String description) {
-
+  public void updateIncome(int idx, String amount, String category, String description) {
+    String date = frmodel.getIncome().get(idx).getDate();
+    Record rec = new Record(date, amount, description, category);
+    frmodel.getIncome().set(idx,rec);
   }
-
-  public void updateIncome(int i, int amount, String category, String description) {
-
+  
+  public void updateOutcome(int idx, String amount, String category, String description) {
+    String date = frmodel.getOutcome().get(idx).getDate();
+    Record rec = new Record(date, amount, description, category);
+    frmodel.getOutcome().set(idx,rec);
   }
 }
