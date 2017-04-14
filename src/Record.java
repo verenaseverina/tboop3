@@ -68,7 +68,7 @@ public class Record {
    * @param jml menisi amount
    */  
   public void setAmount(String jml) {
-    amount = Long.getLong(jml);
+    amount = Long.decode(jml);
   }
   
   /**
