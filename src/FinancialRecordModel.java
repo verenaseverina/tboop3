@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author Verena Severina 
  * @author Adrian Hartarto
  */
-public class FRModel {
+public class FinancialRecordModel {
   /**
    * Atribut array list of Record dari FRModel (data pemasukkan).
    */
@@ -31,7 +31,7 @@ public class FRModel {
   /**
    * Menginisialisasi atribut dari FRModel.
    */
-  public FRModel() {
+  public FinancialRecordModel() {
     income = new ArrayList<>();
     outcome = new ArrayList<>();
     balance = 0;

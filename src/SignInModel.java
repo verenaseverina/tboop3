@@ -3,12 +3,12 @@
  *
  * @author nim_13515091
  */
-public class SIModel {
+public class SignInModel {
   private String id;
   private String pass;
   private String description;
   
-  public SIModel() {
+  public SignInModel() {
     id = "0";
     pass = "";
     description = "";
