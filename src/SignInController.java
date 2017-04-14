@@ -3,10 +3,10 @@
  *
  * @author nim_13515091
  */
-public class SIController {
-  private SIModel signIn;
+public class SignInController {
+  private SignInModel signIn;
   
-  public SIController(Parse parser) {
+  public SignInController(Parse parser) {
     signIn.setId(parser.getPassword()[0]);
     signIn.setPass(parser.getPassword()[1]);
     signIn.setDescription(parser.getPassword()[2]);
