@@ -56,6 +56,7 @@ public class Parse {
     try {
       in = new ArrayList<>();
       out = new ArrayList<>();
+      password = new String[3];
       File xmlFile = new File("src/buku.xml");
       DocumentBuilderFactory xmlBuilder = DocumentBuilderFactory.newInstance();
       DocumentBuilder docBuilder = xmlBuilder.newDocumentBuilder();
@@ -65,9 +66,17 @@ public class Parse {
 
       NodeList recordListIn = docRecord.getElementsByTagName("recordin");
       NodeList recordListOut = docRecord.getElementsByTagName("recordout");
+      NodeList lock = docRecord.getElementsByTagName("lock");
       for (int idx = 0; idx < recordListIn.getLength(); idx++) {
+        Node isiLock = lock.item(idx);
         Node isiRecordIn = recordListIn.item(idx);
         Node isiRecordOut = recordListOut.item(idx);
+        if (isiLock.getNodeType() == Node.ELEMENT_NODE) {
+          Element elRecord = (Element) isiLock;
+          password[0] = elRecord.getAttribute("id");
+          password[1] = elRecord.getElementsByTagName("password").item(0).getTextContent();
+          password[2] = elRecord.getElementsByTagName("deskripsi").item(0).getTextContent();
+        }
         if (isiRecordIn.getNodeType() == Node.ELEMENT_NODE) {
           Element elRecord = (Element) isiRecordIn;
           String tanggal = elRecord.getElementsByTagName("tanggal").item(0).getTextContent();
@@ -102,6 +111,21 @@ public class Parse {
       Document recordDoc = fileBuilder.newDocument();
       Element rootRecord = recordDoc.createElement("buku");
       recordDoc.appendChild(rootRecord);
+      
+      Element lock = recordDoc.createElement("lock");
+      rootRecord.appendChild(lock);
+      
+      Attr idTrue = recordDoc.createAttribute("id");
+      idTrue.setValue(password[0]);
+      lock.setAttributeNode(idTrue);
+      
+      Element pass = recordDoc.createElement("password");
+      pass.appendChild(recordDoc.createTextNode(password[1]));
+      lock.appendChild(pass);
+      
+      Element desc = recordDoc.createElement("deskripsi");
+      desc.appendChild(recordDoc.createTextNode(password[2]));
+      lock.appendChild(desc);
 
       for (Record recIn : in) {
         Element recordin = recordDoc.createElement("recordin");
@@ -163,7 +187,7 @@ public class Parse {
   
   /**
    * Getter in.
-   * @return ArrayList
+   * @return in
    */
   public ArrayList<Record> getIn(){
     return in;
@@ -171,10 +195,18 @@ public class Parse {
   
   /**
    * Getter out.
-   * @return ArrayList
+   * @return out
    */
   public ArrayList<Record> getOut(){
     return out;
+  }
+  
+  /**
+   * Getter password.
+   * @return password
+   */
+  public String[] getPassword(){
+    return password;
   }
   
   /**
@@ -203,5 +235,15 @@ public class Parse {
     for (int idx = 0; idx < outTemp.size(); idx++) {
       out.add(outTemp.get(idx));
     }
+  }
+  
+  /**
+   * Setter password.
+   * @param pass array of String yang ingin disimpan
+   */  
+  public void setPassword(String[] pass){
+    password[0] = pass[0];
+    password[1] = pass[1];
+    password[2] = pass[2];
   }
 }
