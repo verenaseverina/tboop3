@@ -1,6 +1,7 @@
+package financialrecords;
 
 import java.util.ArrayList;
-
+import financialrecords.records.Record;
 /**
  *
  * Kelas model untuk financial records.
@@ -12,11 +13,11 @@ import java.util.ArrayList;
  */
 public class FinancialRecordModel {
   /**
-   * Atribut array list of Record dari FRModel (data pemasukkan).
+   * Atribut array list of financialrecords.records.Record dari FRModel (data pemasukkan).
    */
   private ArrayList<Record> income;
   /**
-   * Atribut array list of Record dari FRModel (data pengeluaran).
+   * Atribut array list of financialrecords.records.Record dari FRModel (data pengeluaran).
    */
   private ArrayList<Record> outcome;
   /**
@@ -78,7 +79,7 @@ public class FinancialRecordModel {
    */
   public void setIncome(String type, int idx, Record rec) {
     if (type.compareTo("add") == 0) {
-      income.add(rec);
+      income.add(idx, rec);
     } 
     else if(type.compareTo("delete") == 0) {
       income.remove(idx);
@@ -93,7 +94,7 @@ public class FinancialRecordModel {
    */
   public void setOutcome(String type, int idx, Record rec) {
     if (type.compareTo("add") == 0) {
-      outcome.add(rec);
+      outcome.add(idx, rec);
     } 
     else if(type.compareTo("delete") == 0) {
       outcome.remove(idx);
