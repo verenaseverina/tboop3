@@ -11,19 +11,21 @@ public class FinancialRecordsController {
   }
 
   public void addIncome(Records rec) {
-
+    int idx = 0;
+    frmodel.setIncome(idx,rec); // kalo yang berdasarkan tanggal gimana?
   }
 
   public void addOutcome(Records rec) {
-
+    int idx = 0;
+    frmodel.setOutcome(idx,rec); // kalo yang berdasarkan tanggal gimana?
   }
 
   public void countBalance() {
     frmodel.setBalance(sumIncome() - sumOutcome());
   }
 
-  public int sumIncome() {
-    int sum = 0;
+  public long sumIncome() {
+    long sum = 0;
 
     for (int i = 0; i < frmodel.getIncome().size(); i++) {
       sum += frmodel.getIncome().get(i).amount;
@@ -32,8 +34,8 @@ public class FinancialRecordsController {
     return sum;
   }
 
-  public int sumOutcome() {
-    int sum = 0;
+  public long sumOutcome() {
+    long sum = 0;
 
     for (int i = 0; i < frmodel.getOutcome().size(); i++) {
       sum += frmodel.getOutcome().get(i).amount;
@@ -42,23 +44,23 @@ public class FinancialRecordsController {
     return sum;
   }
 
-  public int countRecommendedOutcome() {
+  public long countRecommendedOutcome() {
 
   }
 
-  public void deleteIncome(Date date) {
+  public void deleteIncome(int i) {
 
   }
 
-  public void deleteOutcome(Date date) {
+  public void deleteOutcome(int i) {
 
   }
 
-  public void updateOutcome(Date date, int amount, String category, String description) {
+  public void updateOutcome(int i, int amount, String category, String description) {
 
   }
 
-  public void updateIncome(Date date, int amount, String category, String description) {
+  public void updateIncome(int i, int amount, String category, String description) {
 
   }
 }
