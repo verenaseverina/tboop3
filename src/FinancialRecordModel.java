@@ -70,31 +70,33 @@ public class FinancialRecordModel {
     return savings;
   }
   
-  /**
+   /**
    * Setter income
-   * @param in array list yang ingin disimpan
+   * @param type pemilihan cara penambahan/penghapusan
+   * @param idx index dari array list
+   * @param rec reocord yang ingin ditambahkan
    */
-  public void setIncome(ArrayList<Record> in) {
-    for (int idx = 0; idx < in.size(); idx++) {
+  public void setIncome(String type, int idx, Record rec) {
+    if (type.compareTo("add") == 0) {
+      income.add(rec);
+    } 
+    else if(type.compareTo("delete") == 0) {
       income.remove(idx);
-    }
-    
-    for (int idx = 0; idx < in.size(); idx++) {
-      income.add(in.get(idx));
     }
   }
   
    /**
    * Setter outcome
-   * @param out array list yang ingin disimpan
+   * @param type pemilihan cara penambahan/penghapusan
+   * @param idx index dari array list
+   * @param rec reocord yang ingin ditambahkan
    */
-  public void setOutcome(ArrayList<Record> out) {
-    for (int idx = 0; idx < outcome.size(); idx++) {
+  public void setOutcome(String type, int idx, Record rec) {
+    if (type.compareTo("add") == 0) {
+      outcome.add(rec);
+    } 
+    else if(type.compareTo("delete") == 0) {
       outcome.remove(idx);
-    }
-    
-    for (int idx = 0; idx < out.size(); idx++) {
-      outcome.add(out.get(idx));
     }
   }
   
