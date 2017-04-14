@@ -5,11 +5,11 @@ import financialrecords.records.Record;
 /**
  *
  * Kelas model untuk financial records.
- * Kelas FRModel memiliki atribut array list data pemasukkan,
+ * Kelas FinancialRecordsModel memiliki atribut array list data pemasukkan,
  * array list data pengeluaran, informasi saldo, dan informasi tabungan
  * 
  * @author Verena Severina 
- * @author Adrian Hartarto
+ * @author Adrian Hartanto
  */
 public class FinancialRecordModel {
   /**
