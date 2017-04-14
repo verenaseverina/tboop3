@@ -22,12 +22,27 @@ import org.w3c.dom.Element;
 
 /**
  *
- * @author nim_13515091
+ * Kelas yang membaca dan menulis file eksternal.
+ * Kelas parse memiliki atribut array list data pemasukkan dan
+ * array list data pengeluaran, selain itu ada atribut array of string
+ * yang berisi password
+ * 
+ * @author Winarto
+ * @author Adrian Hartarto
  */
-
 public class Parse {
+  /**
+   * Atribut array list of Record dari Parse (data pemasukkan).
+   */
   private ArrayList<Record> in;
+  /**
+   * Atribut array list of Record dari Parse (data pengeluaran).
+   */
   private ArrayList<Record> out;
+  /**
+   * Atribut array of String dari Parse (Password).
+   */
+  private String[] password;
   
   public static void main(String[] args) throws TransformerException {
     Parse x = new Parse();
@@ -39,8 +54,8 @@ public class Parse {
    */
   public Parse() {
     try {
-      in = new ArrayList<Record>();
-      out = new ArrayList<Record>();
+      in = new ArrayList<>();
+      out = new ArrayList<>();
       File xmlFile = new File("src/buku.xml");
       DocumentBuilderFactory xmlBuilder = DocumentBuilderFactory.newInstance();
       DocumentBuilder docBuilder = xmlBuilder.newDocumentBuilder();
@@ -77,6 +92,7 @@ public class Parse {
   
   /**
    * Menyimpan data ke file eksternal.
+   * @throws javax.xml.transform.TransformerConfigurationException
    */
   public void saveFile() throws TransformerConfigurationException, TransformerException {
     try {
@@ -146,7 +162,7 @@ public class Parse {
   }
   
   /**
-   * Mengembalikkan nilai in.
+   * Getter in.
    * @return ArrayList
    */
   public ArrayList<Record> getIn(){
@@ -154,7 +170,7 @@ public class Parse {
   }
   
   /**
-   * Mengembalikkan nilai out.
+   * Getter out.
    * @return ArrayList
    */
   public ArrayList<Record> getOut(){
@@ -162,8 +178,8 @@ public class Parse {
   }
   
   /**
-   * Mengupdate nilai in.
-   * @param inTemp
+   * Setter in.
+   * @param inTemp array list yang ingin disimpan
    */  
   public void setIn(ArrayList<Record> inTemp){
     for (int idx = 0; idx < in.size(); idx++) {
@@ -176,8 +192,8 @@ public class Parse {
   }
   
   /**
-   * Mengupdate nilai out.
-   * @param outTemp
+   * Setter out.
+   * @param outTemp array list yang ingin disimpan
    */  
   public void setOut(ArrayList<Record> outTemp){
     for (int idx = 0; idx < out.size(); idx++) {
