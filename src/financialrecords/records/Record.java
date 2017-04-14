@@ -2,7 +2,7 @@ package financialrecords.records;
 
 /**
  *
- * Kelas yang berisi data keungan.
+ * Kelas yang berisi data keuangan.
  * Kelas financialrecords.records.Record memiliki atribut string date, long amount, string description,
  * dan string category
  * 
