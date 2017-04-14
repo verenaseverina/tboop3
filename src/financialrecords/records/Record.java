@@ -13,7 +13,7 @@ public class Record {
   /**
    * Atribut String dari parse (date) yang menyimpan tanggal.
    */
-  private String date;
+  private NewDate date;
   /**
    * Atribut long dari parse (amount) yang menyimpan nilai uang.
    */
@@ -36,7 +36,7 @@ public class Record {
    * @param cat untuk mengisi category
    */
   public Record (String tgl, String jml, String desc,String cat) {
-    date = tgl;
+    date = new NewDate(tgl);
     amount = Long.decode(jml);
     description = desc;
     category = cat;
@@ -50,7 +50,7 @@ public class Record {
    * @param desc untuk mengisi description
    */
   public Record (String tgl, String jml, String desc) {
-    date = tgl;
+    date = new NewDate(tgl);
     amount = Long.decode(jml);
     description = desc;
     category = "";
@@ -61,7 +61,7 @@ public class Record {
    * @param tgl mengisi date
    */  
   public void setDate(String tgl) {
-    date = tgl;
+    date.copyDate(tgl);
   }
   
   /**
@@ -92,7 +92,7 @@ public class Record {
    * Getter date.
    * @return date
    */  
-  public String getDate() {
+  public NewDate getDate() {
     return date;
   }
   

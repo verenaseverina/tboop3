@@ -1,5 +1,6 @@
 package parse;
 
+import financialrecords.records.NewDate;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 
@@ -48,6 +49,8 @@ public class Parse {
   private String[] password;
   
   public static void main(String[] args) throws TransformerException {
+    NewDate y = new NewDate("23/24/2525");
+    System.out.print(y.getDay());
     Parse x = new Parse();
     x.saveFile();
   }
@@ -139,7 +142,7 @@ public class Parse {
         recordin.setAttributeNode(idPrimeKey);
 
         Element tanggal = recordDoc.createElement("tanggal");
-        tanggal.appendChild(recordDoc.createTextNode(recIn.getDate()));
+        tanggal.appendChild(recordDoc.createTextNode(recIn.getDate().dateToStr()));
         recordin.appendChild(tanggal);
 
         Element jumlah = recordDoc.createElement("jumlah");
@@ -164,7 +167,7 @@ public class Parse {
         recordout.setAttributeNode(idPrimeKey);
 
         Element tanggal = recordDoc.createElement("tanggal");
-        tanggal.appendChild(recordDoc.createTextNode(recOut.getDate()));
+        tanggal.appendChild(recordDoc.createTextNode(recOut.getDate().dateToStr()));
         recordout.appendChild(tanggal);
 
         Element jumlah = recordDoc.createElement("jumlah");

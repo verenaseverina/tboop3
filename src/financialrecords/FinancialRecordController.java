@@ -47,7 +47,7 @@ public class FinancialRecordController {
    * @param rec adalah Record yang akan ditambahkan
    */
   public void addIncome(Record rec) {
-    int idx = findDateIncome(rec.getDate());
+    int idx = findDateIncome(rec.getDate().dateToStr());
     frmodel.setIncome("add", idx, rec);
   }
 
@@ -76,7 +76,7 @@ public class FinancialRecordController {
    * @param rec adalah Record yang akan ditambahkan
    */
   public void addOutcome(Record rec) {
-    int idx = findDateOutcome(rec.getDate());
+    int idx = findDateOutcome(rec.getDate().dateToStr());
     frmodel.setOutcome("add", idx, rec);
   }
 
