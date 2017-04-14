@@ -3,10 +3,19 @@ package financialrecords;
 import financialrecords.records.Record;
 import parse.Parse;
 
+/**
+ * Kelas controller untuk financial records.
+ * Kelas FinancialRecordsController memiliki atribut
+ * FinancialRecordsModel.
+ *
+ * @author Kukuh Basuki Rahmat
+ * @author Verena Severina
+ */
+
 public class FinancialRecordsController {
   private FinancialRecordModel frmodel;
 
-  private int findDateIncome(Record rec) {
+  private int findDateIncome(Record rec) { // ntar ini diubah kalo datenya udah ga string
     int idx = 0;
     boolean found = false;
     String compare = rec.getDate();
@@ -22,7 +31,7 @@ public class FinancialRecordsController {
     return idx;
   }
 
-  private int findDateOutcome(Record rec) {
+  private int findDateOutcome(Record rec) { // ntar ini diubah kalo datenya udah ga string
     int idx = 0;
     boolean found = false;
     String compare = rec.getDate();
@@ -112,7 +121,7 @@ public class FinancialRecordsController {
     Record rec = new Record(date, amount, description, category);
     frmodel.getIncome().set(idx,rec);
   }
-  
+
   public void updateOutcome(int idx, String amount, String category, String description) {
     String date = frmodel.getOutcome().get(idx).getDate();
     Record rec = new Record(date, amount, description, category);
