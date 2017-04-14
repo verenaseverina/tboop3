@@ -5,23 +5,23 @@ import parse.Parse;
 
 /**
  * Kelas controller untuk financial records.
- * Kelas FinancialRecordsController memiliki atribut
+ * Kelas FinancialRecordController memiliki atribut
  * FinancialRecordsModel.
  *
  * @author Kukuh Basuki Rahmat
  * @author Verena Severina
  */
-public class FinancialRecordsController {
+public class FinancialRecordController {
   /**
    * Atribut financialrecords.FinancialRecordModel.
    */
   private FinancialRecordModel frmodel;
 
   /**
-   * Ctor dari FinancialRecordsController.
+   * Ctor dari FinancialRecordController.
    * @param parser adalah kelas untuk melakukan parsing
    */
-  public FinancialRecordsController(Parse parser) {
+  public FinancialRecordController(Parse parser) {
     for (int idx = 0; idx < parser.getIn().size(); idx++) {
       frmodel.setIncome("add", idx, parser.getIn().get(idx));
     }
