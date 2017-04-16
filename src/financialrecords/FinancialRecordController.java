@@ -1,5 +1,6 @@
 package financialrecords;
 
+import financialrecords.records.NewDate;
 import financialrecords.records.Record;
 import parse.Parse;
 
@@ -47,7 +48,7 @@ public class FinancialRecordController {
    * @param rec adalah Record yang akan ditambahkan
    */
   public void addIncome(Record rec) {
-    int idx = findDateIncome(rec.getDate().dateToStr());
+    int idx = findDateIncome(rec.getDate());
     frmodel.setIncome("add", idx, rec);
   }
 
@@ -56,15 +57,29 @@ public class FinancialRecordController {
    * @param date adalah tanggal yang akan dicari index penempatannya
    * @return index tempat ditemukannya posisi penempatan tanggal
    */
-  public int findDateIncome(String date) { // ntar ini diubah kalo datenya udah ga string
+  public int findDateIncome(NewDate date) {
     int idx = 0;
     boolean found = false;
+    int dateYear = Integer.parseInt(date.getYear());
+    int dateMonth = Integer.parseInt(date.getMonth());
+    int dateDay = Integer.parseInt(date.getDay());
 
     while ((idx < frmodel.getIncome().size()) && !found) {
-      if (frmodel.getIncome().get(idx).getDate().equals(date)) {
+      int year = Integer.parseInt(frmodel.getIncome().get(idx).getDate().getYear());
+      int month = Integer.parseInt(frmodel.getIncome().get(idx).getDate().getMonth());
+      int day = Integer.parseInt(frmodel.getIncome().get(idx).getDate().getDay());
+      if (year > dateYear) {
         found = true;
       } else {
-        idx++;
+        if (month > dateMonth) {
+          found = true;
+        } else {
+          if (day > dateDay) {
+            found = true;
+          } else {
+            idx++;
+          }
+        }
       }
     }
 
@@ -76,7 +91,7 @@ public class FinancialRecordController {
    * @param rec adalah Record yang akan ditambahkan
    */
   public void addOutcome(Record rec) {
-    int idx = findDateOutcome(rec.getDate().dateToStr());
+    int idx = findDateOutcome(rec.getDate());
     frmodel.setOutcome("add", idx, rec);
   }
 
@@ -85,15 +100,29 @@ public class FinancialRecordController {
    * @param date adalah tanggal yang akan dicari index penempatannya
    * @return index tempat ditemukannya posisi penempatan tanggal
    */
-  private int findDateOutcome(String date) { // ntar ini diubah kalo datenya udah ga string
+  private int findDateOutcome(NewDate date) {
     int idx = 0;
     boolean found = false;
+    int dateYear = Integer.parseInt(date.getYear());
+    int dateMonth = Integer.parseInt(date.getMonth());
+    int dateDay = Integer.parseInt(date.getDay());
 
-    while ((idx < frmodel.getOutcome().size()) && !found) {
-      if (frmodel.getOutcome().get(idx).getDate().equals(date)) {
+    while ((idx < frmodel.getIncome().size()) && !found) {
+      int year = Integer.parseInt(frmodel.getOutcome().get(idx).getDate().getYear());
+      int month = Integer.parseInt(frmodel.getOutcome().get(idx).getDate().getMonth());
+      int day = Integer.parseInt(frmodel.getOutcome().get(idx).getDate().getDay());
+      if (year > dateYear) {
         found = true;
       } else {
-        idx++;
+        if (month > dateMonth) {
+          found = true;
+        } else {
+          if (day > dateDay) {
+            found = true;
+          } else {
+            idx++;
+          }
+        }
       }
     }
 
