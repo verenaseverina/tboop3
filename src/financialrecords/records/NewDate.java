@@ -112,43 +112,40 @@ public class NewDate {
 
   /**
    * Mengecek apakah dua tanggal berada di minggu yang sama.
-   * @param date1 tanggal1 yang akan dibandingkan
-   * @param date2 pembanding tanggal1
+   * @param date2 pembanding tanggal objek
    * @return apakah dua tanggal berada di minggu yang sama
    */
-  public boolean isOneWeek(NewDate date1, NewDate date2) {
-    int day1 = Integer.getInteger(date1.getMonth());
+  public boolean isOneWeek(NewDate date2) {
+    int day1 = Integer.getInteger(this.getMonth());
     int day2 = Integer.getInteger(date2.getMonth());
-    boolean monthEquals = date1.getDay().equals(date2.getDay());
-    boolean yearEquals = date1.getYear().equals(date2.getYear());
+    boolean monthEquals = this.getDay().equals(date2.getDay());
+    boolean yearEquals = this.getYear().equals(date2.getYear());
     return (monthEquals && yearEquals && (day1 + 7 == day2));
   }
 
   /**
    * Mengecek apakah dua tanggal berada di bulan yang sama.
-   * @param date1 tanggal1 yang akan dibandingkan
-   * @param date2 pembanding tanggal1
+   * @param date2 pembanding tanggal objek
    * @return apakah dua tanggal berada di bulan yang sama
    */
-  public boolean isOneMonth(NewDate date1, NewDate date2) {
-    int month1 = Integer.getInteger(date1.getMonth());
+  public boolean isOneMonth(NewDate date2) {
+    int month1 = Integer.getInteger(this.getMonth());
     int month2 = Integer.getInteger(date2.getMonth());
-    boolean dayEquals = date1.getDay().equals(date2.getDay());
-    boolean yearEquals = date1.getYear().equals(date2.getYear());
+    boolean dayEquals = this.getDay().equals(date2.getDay());
+    boolean yearEquals = this.getYear().equals(date2.getYear());
     return (dayEquals && yearEquals && (month1 + 1 == month2));
   }
 
   /**
    * Mengecek apakah dua tanggal berada di tahun yang sama.
-   * @param date1 tanggal1 yang akan dibandingkan
-   * @param date2 pembanding tanggal1
+   * @param date2 pembanding tanggal objek
    * @return apakah dua tanggal berada di tahun yang sama
    */
-  public boolean isOneYear(NewDate date1, NewDate date2) {
-    int year1 = Integer.getInteger(date1.getYear());
+  public boolean isOneYear(NewDate date2) {
+    int year1 = Integer.getInteger(this.getYear());
     int year2 = Integer.getInteger(date2.getYear());
-    boolean dayEquals = date1.getDay().equals(date2.getDay());
-    boolean monthEquals = date1.getMonth().equals(date2.getMonth());
+    boolean dayEquals = this.getDay().equals(date2.getDay());
+    boolean monthEquals = this.getMonth().equals(date2.getMonth());
     return (dayEquals && monthEquals && (year1 + 1 == year2));
   }
   
