@@ -13,7 +13,8 @@ import java.awt.event.ActionListener;
 public class SignInView extends JFrame {
   private int width = 200;
   private int height = 150;
-  private SignInController signIn;
+  private SignInController signInP;
+  private SignInModel signInM;
 
   public SignInView() {
     this.setVisible(true);
@@ -30,6 +31,13 @@ public class SignInView extends JFrame {
     inputPassword.setAlignmentX(Component.CENTER_ALIGNMENT);
     panel.add(inputPassword);
 
+    String txt = "Hint : " + signInM.getDescription();
+    JLabel hint = new JLabel(txt);
+    hint.setAlignmentX(Component.CENTER_ALIGNMENT);
+    hint.setVisible(false);
+    panel.add(hint);
+
+
     JButton check = new JButton("OK");
     check.setBackground(Color.black);
     check.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -40,10 +48,11 @@ public class SignInView extends JFrame {
               @Override
               public void actionPerformed(ActionEvent e) {
                 String inPass = new String(inputPassword.getText());
-                if (signIn.validatePassword(inPass)) {
+                if (signInP.validatePassword(inPass)) {
 
                 } else {
                   showAlert();
+                  hint.setVisible(true);
                 }
               }
             }
