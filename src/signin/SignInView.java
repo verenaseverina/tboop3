@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
  */
 
 public class SignInView extends JFrame {
-  private int width =  200;
+  private int width = 200;
   private int height = 150;
   private SignInController signIn;
 
@@ -20,7 +20,7 @@ public class SignInView extends JFrame {
     this.setLocationRelativeTo(null);
 
     JPanel panel = new JPanel();
-    panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
     JLabel passwtxt = new JLabel("Password : ");
     passwtxt.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -43,10 +43,15 @@ public class SignInView extends JFrame {
                 if (signIn.validatePassword(inPass)) {
 
                 } else {
-                  
+                  showAlert();
                 }
               }
             }
     );
+  }
+
+  public void showAlert() {
+    JFrame alertFr = new JFrame();
+    JOptionPane.showMessageDialog(alertFr, "Wrong Password", "Error", JOptionPane.ERROR_MESSAGE);
   }
 }
