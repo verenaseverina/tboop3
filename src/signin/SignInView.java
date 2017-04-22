@@ -1,6 +1,8 @@
 package signin;
 
 
+import financialrecords.FinancialRecordView;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -49,7 +51,7 @@ public class SignInView extends JFrame {
               public void actionPerformed(ActionEvent e) {
                 String inPass = new String(inputPassword.getText());
                 if (signInP.validatePassword(inPass)) {
-
+                  FinancialRecordView buf = new FinancialRecordView();
                 } else {
                   showAlert();
                   hint.setVisible(true);
