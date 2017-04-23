@@ -39,7 +39,7 @@ public class FinancialRecordView extends JFrame {
     controlBar.setVisible(true);
 
     // nanti pake JScrollPane
-    JTable table = new JTable();
+    JTable allRecords = new JTable();
 
 
     // biar resizable pake JSplitPane
@@ -51,7 +51,7 @@ public class FinancialRecordView extends JFrame {
     splitPane2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
     splitPane2.setLeftComponent(controls);
     splitPane2.setRightComponent(splitPane1);
-    
+
     this.add(splitPane2);
 
 
