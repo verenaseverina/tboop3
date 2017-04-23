@@ -3,58 +3,29 @@ package financialrecords.records;
 /**
  *
  * Kelas yang berisi data keuangan.
- * Kelas financialrecords.records.Record memiliki atribut string date, long amount, string description,
+ * Kelas Record memiliki atribut string date, long amount, string description,
  * dan string category
  * 
  * @author Winarto
  * @author Kukuh B R
  */
-public class Record {
+public abstract class Record {
   /**
    * Atribut String dari parse (date) yang menyimpan tanggal.
    */
-  private NewDate date;
+  protected NewDate date;
   /**
    * Atribut long dari parse (amount) yang menyimpan nilai uang.
    */
-  private long amount;
+  protected long amount;
   /**
    * Atribut String dari parse (description) yang menyimpan deskripsi.
    */
-  private String description;
+  protected String description;
   /**
    * Atribut String dari parse (category) yang menyimpan kategori pemakaian.
    */
-  private String category;
-  
-  /**
-   * Menginisialisasi semua atribut dengan string masukkan.
-   * 
-   * @param tgl untuk mengisi date
-   * @param jml untuk mengisi amount
-   * @param desc untuk mengisi description
-   * @param cat untuk mengisi category
-   */
-  public Record (String tgl, String jml, String desc,String cat) {
-    date = new NewDate(tgl);
-    amount = Long.decode(jml);
-    description = desc;
-    category = cat;
-  }
-  
-  /**
-   * Menginisialisasi semua atribut dengan string masukkan (kecuali category).
-   * 
-   * @param tgl untuk mengisi date
-   * @param jml untuk mengisi amount
-   * @param desc untuk mengisi description
-   */
-  public Record (String tgl, String jml, String desc) {
-    date = new NewDate(tgl);
-    amount = Long.decode(jml);
-    description = desc;
-    category = "";
-  }
+  protected String category;
   
   /**
    * Setter date.
