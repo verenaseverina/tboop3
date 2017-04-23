@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 /**
  * Created by KUKUH BASUKI RAHMAT on 22-Apr-17.
  */
@@ -18,6 +17,8 @@ public class SignInView extends JFrame {
   private JLabel passwtxt = new JLabel("Password : ");
   private JTextField inputPassword = new JTextField();
   private JButton check = new JButton("OK");
+  private StringBuffer txt = new StringBuffer("");
+  private JLabel hint = new JLabel(txt.toString());
 
   public SignInView() {
     this.setVisible(true);
@@ -32,11 +33,9 @@ public class SignInView extends JFrame {
     inputPassword.setAlignmentX(Component.CENTER_ALIGNMENT);
     panel.add(inputPassword);
 
-    /*String txt = "Hint : " + signInM.getDescription();
-    JLabel hint = new JLabel(txt);
     hint.setAlignmentX(Component.CENTER_ALIGNMENT);
     hint.setVisible(false);
-    panel.add(hint);*/
+    panel.add(hint);
 
     check.setBackground(Color.black);
     check.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -59,5 +58,9 @@ public class SignInView extends JFrame {
 
   public String getInputPassword() {
     return inputPassword.getText();
+  }
+
+  public void setTxt(String text) {
+    txt.replace(0,txt.length()-1, text);
   }
 }
