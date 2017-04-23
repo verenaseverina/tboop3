@@ -24,24 +24,36 @@ public class FinancialRecordView extends JFrame {
     addIncomeButton.setBackground(Color.black);
     addIncomeButton.setBounds(90,50,220,30); // ini harus ubah2 lagi
 
-    JButton addOutcomeButton = new JButton("Add outcome");
+    JButton addOutcomeButton = new JButton("Add Income");
     addOutcomeButton.setBackground(Color.black);
-    addIncomeButton.setBounds(90,80,220,30); // ini harus ubah2 lagi
+    addOutcomeButton.setBounds(90,80,220,30); // ini harus ubah2 lagi
 
-    JPanel glass = new JPanel();
-    glass.setSize(550,500);
-    glass.setBackground(Color.black);
-    glass.setVisible(true);
+    JPanel table = new JPanel();
+    table.setSize(550,450);
+    table.setBackground(Color.black);
+    table.setVisible(true);
+
+    JPanel controlBar = new JPanel();
+    controlBar.setSize(550, 50);
+    controlBar.setBackground(Color.gray);
+    controlBar.setVisible(true);
+
+    // nanti pake JScrollPane
+    JTable table = new JTable();
+
 
     // biar resizable pake JSplitPane
-    JSplitPane splitPane = new JSplitPane();
-    splitPane.setSize(width,height);
-    splitPane.setDividerSize(0);
-    splitPane.setDividerLocation(200);
-    splitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
-    splitPane.setLeftComponent(controls);
-    splitPane.setRightComponent(glass);
+    JSplitPane splitPane1 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, controlBar, table);
+    JSplitPane splitPane2 = new JSplitPane();
+    splitPane2.setSize(width,height);
+    splitPane2.setDividerSize(0);
+    splitPane2.setDividerLocation(200);
+    splitPane2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
+    splitPane2.setLeftComponent(controls);
+    splitPane2.setRightComponent(splitPane1);
+    
+    this.add(splitPane2);
 
-    this.add(splitPane);
+
   }
 }
