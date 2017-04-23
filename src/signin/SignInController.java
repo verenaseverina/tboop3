@@ -1,6 +1,7 @@
 package signin;
 
-import parse.Parse;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Kelas controller untuk sign in.
@@ -13,16 +14,35 @@ public class SignInController {
   /**
    * Atribut signin.SignInModel.
    */
-  private SignInModel signIn;
+  private SignInModel signInM;
+  /**
+   * Atribut signin.SignInView.
+   */
+  private SignInView signInV;
 
   /**
    * Ctor dari SignInController.
-   * @param parser adalah kelas untuk melakukan parsing
+   * @param theView adalah SignInView yang akan di-assign
+   * @param theModel adalah SignInModel yang akan di-assign
    */
-  public SignInController(Parse parser) {
-    signIn.setId(parser.getPassword()[0]);
-    signIn.setPass(parser.getPassword()[1]);
-    signIn.setDescription(parser.getPassword()[2]);
+  public SignInController(SignInView theView, SignInModel theModel) {
+    signInM = theModel;
+    signInV = theView;
+
+    this.signInV.addCheckListener(new CheckListener());
+  }
+
+  class CheckListener implements ActionListener {
+
+    public void actionPerformed(ActionEvent e) {
+      if (validatePassword(signInV.getInputPassword())) {
+        signInV.closeWindow();
+        // ini manggil windowsnya gimana
+      } else {
+        // kasih liat hintnya
+        signInV.showAlert();
+      }
+    }
   }
 
   /**
@@ -30,7 +50,7 @@ public class SignInController {
    * @return boolean yang menyatakan apakah program dikunci
    */
   public boolean isLock() {
-    return (Integer.getInteger(signIn.getId())==1);
+    return (Integer.getInteger(signInM.getId())==1);
   }
 
   /**
@@ -40,9 +60,9 @@ public class SignInController {
    * @param desc adalah String yang menggambarkan kata kunci
    */
   public void changePassword(String id, String pass, String desc) {
-    signIn.setId(id);
-    signIn.setPass(pass);
-    signIn.setDescription(desc);
+    signInM.setId(id);
+    signInM.setPass(pass);
+    signInM.setDescription(desc);
   }
 
   /**
@@ -51,6 +71,6 @@ public class SignInController {
    * @return boolean yang menyatakan apakah password yang dimasukan sesuai.
    */
   public boolean validatePassword(String pass) {
-    return (pass.compareTo(signIn.getPass()) == 0);
+    return (pass.compareTo(signInM.getPass()) == 0);
   }
 }
