@@ -21,7 +21,7 @@ public class FinancialRecordModel {
   /**
    * Atribut array list of financialrecords.records.Record dari FRModel (data pengeluaran).
    */
-  private ArrayList<Record> outcome;
+  private ArrayList<Record> expense;
   /**
    * Atribut long dari FRModel (data saldo).
    */
@@ -36,7 +36,7 @@ public class FinancialRecordModel {
    */
   public FinancialRecordModel() {
     income = new ArrayList<>();
-    outcome = new ArrayList<>();
+    expense = new ArrayList<>();
     balance = 0;
     savings = 0;
   }
@@ -51,7 +51,7 @@ public class FinancialRecordModel {
     }
 
     for (int idx = 0; idx < parser.getOut().size(); idx++) {
-      outcome.add(idx,parser.getOut().get(idx));
+      expense.add(idx,parser.getOut().get(idx));
     }
 
     long sumIn = 0;
@@ -60,8 +60,8 @@ public class FinancialRecordModel {
     }
 
     long sumOut = 0;
-    for (int idx = 0; idx < outcome.size(); idx++) {
-      sumOut += outcome.get(idx).getAmount();
+    for (int idx = 0; idx < expense.size(); idx++) {
+      sumOut += expense.get(idx).getAmount();
     }
     balance = sumIn - sumOut;
   }
@@ -75,11 +75,11 @@ public class FinancialRecordModel {
   }
   
   /**
-   * Getter outcome.
-   * @return outcome
+   * Getter expense.
+   * @return expense
    */
-  public ArrayList<Record> getOutcome() {
-    return outcome;
+  public ArrayList<Record> getExpense() {
+    return expense;
   }
   
   /**
@@ -114,17 +114,17 @@ public class FinancialRecordModel {
   }
   
    /**
-   * Setter outcome
+   * Setter expense
    * @param type pemilihan cara penambahan/penghapusan
    * @param idx index dari array list
    * @param rec reocord yang ingin ditambahkan
    */
-  public void setOutcome(String type, int idx, Record rec) {
+  public void setExpense(String type, int idx, Record rec) {
     if (type.compareTo("add") == 0) {
-      outcome.add(idx, rec);
+      expense.add(idx, rec);
     } 
     else if(type.compareTo("delete") == 0) {
-      outcome.remove(idx);
+      expense.remove(idx);
     }
   }
   
