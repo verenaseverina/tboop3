@@ -1,5 +1,7 @@
 package signin;
 
+import parse.Parse;
+
 /**
  *
  * Kelas model untuk sign in.
@@ -31,6 +33,16 @@ public class SignInModel {
     id = "0";
     pass = "";
     description = "";
+  }
+
+  /**
+   * Constructor dengan parameter.
+   * @param parser adalah parsing yang mengambil data dari file eksternal
+   */
+  public SignInModel(Parse parser) {
+    id = parser.getPassword()[0];
+    pass = parser.getPassword()[1];
+    description = parser.getPassword()[2];
   }
 
   /**
