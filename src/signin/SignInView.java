@@ -51,6 +51,7 @@ public class SignInView extends JFrame {
               public void actionPerformed(ActionEvent e) {
                 String inPass = new String(inputPassword.getText());
                 if (signInP.validatePassword(inPass)) {
+                  closeWindow();
                   FinancialRecordView buf = new FinancialRecordView();
                 } else {
                   showAlert();
@@ -64,5 +65,9 @@ public class SignInView extends JFrame {
   public void showAlert() {
     JFrame alertFr = new JFrame();
     JOptionPane.showMessageDialog(alertFr, "Wrong Password", "Error", JOptionPane.ERROR_MESSAGE);
+  }
+
+  public void closeWindow() {
+    this.dispose();
   }
 }
