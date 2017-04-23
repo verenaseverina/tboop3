@@ -210,7 +210,7 @@ public class FinancialRecordController {
    * @param category adalah category dari Record yang akan di-update
    * @param description adalah description dari Record yang akan di-update
    */
-  public void updateExpensee(int idx, String amount, String category, String description) {
+  public void updateExpense(int idx, String amount, String category, String description) {
     frmodel.getExpense().get(idx).setAmount(amount);
     frmodel.getExpense().get(idx).setCategory(category);
     frmodel.getExpense().get(idx).setDescription(description);
