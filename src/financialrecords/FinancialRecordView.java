@@ -18,15 +18,17 @@ public class FinancialRecordView extends JFrame {
     controls.setSize(200,500);
     controls.setBackground(Color.white);
     controls.setVisible(true);
-    controls.setLayout(null); // ini ntar ganti aja kalo ga suka layoutnya
+    controls.setLayout(new BoxLayout(controls, BoxLayout.Y_AXIS));
 
     JButton addIncomeButton = new JButton("Add Income");
     addIncomeButton.setBackground(Color.black);
-    addIncomeButton.setBounds(90,50,220,30); // ini harus ubah2 lagi
+    addIncomeButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+    controls.add(addIncomeButton);
 
-    JButton addOutcomeButton = new JButton("Add Income");
-    addOutcomeButton.setBackground(Color.black);
-    addOutcomeButton.setBounds(90,80,220,30); // ini harus ubah2 lagi
+    JButton addExpenseButton = new JButton("Add Income");
+    addExpenseButton.setBackground(Color.black);
+    addExpenseButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+    controls.add(addExpenseButton);
 
     JPanel table = new JPanel();
     table.setSize(550,450);
@@ -53,7 +55,6 @@ public class FinancialRecordView extends JFrame {
     splitPane2.setRightComponent(splitPane1);
 
     this.add(splitPane2);
-
 
   }
 }
