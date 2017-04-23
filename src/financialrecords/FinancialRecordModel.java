@@ -2,6 +2,8 @@ package financialrecords;
 
 import java.util.ArrayList;
 import financialrecords.records.Record;
+import parse.Parse;
+
 /**
  *
  * Kelas model untuk financial records.
@@ -9,7 +11,7 @@ import financialrecords.records.Record;
  * array list data pengeluaran, informasi saldo, dan informasi tabungan
  * 
  * @author Verena Severina 
- * @author Adrian Hartanto
+ * @author Adrian Hartarto
  */
 public class FinancialRecordModel {
   /**
@@ -37,6 +39,31 @@ public class FinancialRecordModel {
     outcome = new ArrayList<>();
     balance = 0;
     savings = 0;
+  }
+
+  /**
+   * Ctor dari FinancialRecordModel.
+   * @param parser adalah kelas untuk melakukan parsing
+   */
+  public FinancialRecordModel(Parse parser) {
+    for (int idx = 0; idx < parser.getIn().size(); idx++) {
+      income.add(idx,parser.getIn().get(idx));
+    }
+
+    for (int idx = 0; idx < parser.getOut().size(); idx++) {
+      outcome.add(idx,parser.getOut().get(idx));
+    }
+
+    long sumIn = 0;
+    for (int idx = 0; idx < income.size(); idx++) {
+      sumIn += income.get(idx).getAmount();
+    }
+
+    long sumOut = 0;
+    for (int idx = 0; idx < outcome.size(); idx++) {
+      sumOut += outcome.get(idx).getAmount();
+    }
+    balance = sumIn - sumOut;
   }
   
   /**

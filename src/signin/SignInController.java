@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
  * Kelas controller untuk sign in.
  * Kelas SignInController memiliki atribut SignInModel
  *
- * @author Adrian Hartanto
+ * @author Adrian Hartarto
  * @author Winarto
  */
 public class SignInController {
@@ -39,7 +39,7 @@ public class SignInController {
         signInV.closeWindow();
         // ini manggil windowsnya gimana
       } else {
-        // kasih liat hintnya
+        signInV.setTxt(signInM.getDescription());
         signInV.showAlert();
       }
     }
