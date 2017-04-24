@@ -28,7 +28,7 @@ public class FinancialRecordController {
     }
     
     for (int idx = 0; idx < parser.getOut().size(); idx++) {
-      frmodel.setOutcome("add", idx, parser.getOut().get(idx));
+      frmodel.setExpense("add", idx, parser.getOut().get(idx));
     }
     
     long sumIn = 0;
@@ -37,8 +37,8 @@ public class FinancialRecordController {
     }
 
     long sumOut = 0;
-    for (int idx = 0; idx < frmodel.getOutcome().size(); idx++) {
-      sumOut += frmodel.getOutcome().get(idx).getAmount();
+    for (int idx = 0; idx < frmodel.getExpense().size(); idx++) {
+      sumOut += frmodel.getExpense().get(idx).getAmount();
     }
     frmodel.setBalance(sumIn-sumOut);
   }
@@ -91,8 +91,8 @@ public class FinancialRecordController {
    * @param rec adalah Record yang akan ditambahkan
    */
   public void addOutcome(Record rec) {
-    int idx = findDateOutcome(rec.getDate());
-    frmodel.setOutcome("add", idx, rec);
+    int idx = findDateExpense(rec.getDate());
+    frmodel.setExpense("add", idx, rec);
   }
 
   /**
@@ -100,7 +100,7 @@ public class FinancialRecordController {
    * @param date adalah tanggal yang akan dicari index penempatannya
    * @return index tempat ditemukannya posisi penempatan tanggal
    */
-  private int findDateOutcome(NewDate date) {
+  private int findDateExpense(NewDate date) {
     int idx = 0;
     boolean found = false;
     int dateYear = Integer.parseInt(date.getYear());
@@ -108,9 +108,9 @@ public class FinancialRecordController {
     int dateDay = Integer.parseInt(date.getDay());
 
     while ((idx < frmodel.getIncome().size()) && !found) {
-      int year = Integer.parseInt(frmodel.getOutcome().get(idx).getDate().getYear());
-      int month = Integer.parseInt(frmodel.getOutcome().get(idx).getDate().getMonth());
-      int day = Integer.parseInt(frmodel.getOutcome().get(idx).getDate().getDay());
+      int year = Integer.parseInt(frmodel.getExpense().get(idx).getDate().getYear());
+      int month = Integer.parseInt(frmodel.getExpense().get(idx).getDate().getMonth());
+      int day = Integer.parseInt(frmodel.getExpense().get(idx).getDate().getDay());
       if (year > dateYear) {
         found = true;
       } else {
@@ -157,8 +157,8 @@ public class FinancialRecordController {
   public long sumOutcome() {
     long sum = 0;
 
-    for (int idx = 0; idx < frmodel.getOutcome().size(); idx++) {
-      sum += frmodel.getOutcome().get(idx).getAmount();
+    for (int idx = 0; idx < frmodel.getExpense().size(); idx++) {
+      sum += frmodel.getExpense().get(idx).getAmount();
     }
 
     return sum;
@@ -168,7 +168,7 @@ public class FinancialRecordController {
    * Menghitung rekomendasi pengeluaran.
    * @return rekomendasi pengeluaran
    */
-  public long countRecommendedOutcome() {
+  public long countRecommendedExpense() {
     return 0;
   }
 
@@ -185,9 +185,9 @@ public class FinancialRecordController {
    * Menghapus Record pada ArrayList outcome.
    * @param idx adalah index dari Record yang akan dihapus
    */
-  public void deleteOutcome(int idx) {
+  public void deleteExpense(int idx) {
     Record temprec = new Record("","0","","");
-    frmodel.setOutcome("delete", idx, temprec);
+    frmodel.setExpense("delete", idx, temprec);
   }
 
   /**
@@ -210,9 +210,9 @@ public class FinancialRecordController {
    * @param category adalah category dari Record yang akan di-update
    * @param description adalah description dari Record yang akan di-update
    */
-  public void updateOutcome(int idx, String amount, String category, String description) {
-    frmodel.getOutcome().get(idx).setAmount(amount);
-    frmodel.getOutcome().get(idx).setCategory(category);
-    frmodel.getOutcome().get(idx).setDescription(description);
+  public void updateExpense(int idx, String amount, String category, String description) {
+    frmodel.getExpense().get(idx).setAmount(amount);
+    frmodel.getExpense().get(idx).setCategory(category);
+    frmodel.getExpense().get(idx).setDescription(description);
   }
 }

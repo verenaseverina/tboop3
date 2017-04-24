@@ -18,30 +18,43 @@ public class FinancialRecordView extends JFrame {
     controls.setSize(200,500);
     controls.setBackground(Color.white);
     controls.setVisible(true);
-    controls.setLayout(null); // ini ntar ganti aja kalo ga suka layoutnya
+    controls.setLayout(new BoxLayout(controls, BoxLayout.Y_AXIS));
 
     JButton addIncomeButton = new JButton("Add Income");
     addIncomeButton.setBackground(Color.black);
-    addIncomeButton.setBounds(90,50,220,30); // ini harus ubah2 lagi
+    addIncomeButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+    controls.add(addIncomeButton);
 
-    JButton addOutcomeButton = new JButton("Add outcome");
-    addOutcomeButton.setBackground(Color.black);
-    addIncomeButton.setBounds(90,80,220,30); // ini harus ubah2 lagi
+    JButton addExpenseButton = new JButton("Add Income");
+    addExpenseButton.setBackground(Color.black);
+    addExpenseButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+    controls.add(addExpenseButton);
 
-    JPanel glass = new JPanel();
-    glass.setSize(550,500);
-    glass.setBackground(Color.black);
-    glass.setVisible(true);
+    JPanel table = new JPanel();
+    table.setSize(550,450);
+    table.setBackground(Color.black);
+    table.setVisible(true);
+
+    JPanel controlBar = new JPanel();
+    controlBar.setSize(550, 50);
+    controlBar.setBackground(Color.gray);
+    controlBar.setVisible(true);
+
+    // nanti pake JScrollPane
+    JTable allRecords = new JTable();
+
 
     // biar resizable pake JSplitPane
-    JSplitPane splitPane = new JSplitPane();
-    splitPane.setSize(width,height);
-    splitPane.setDividerSize(0);
-    splitPane.setDividerLocation(200);
-    splitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
-    splitPane.setLeftComponent(controls);
-    splitPane.setRightComponent(glass);
+    JSplitPane splitPane1 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, controlBar, table);
+    JSplitPane splitPane2 = new JSplitPane();
+    splitPane2.setSize(width,height);
+    splitPane2.setDividerSize(0);
+    splitPane2.setDividerLocation(200);
+    splitPane2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
+    splitPane2.setLeftComponent(controls);
+    splitPane2.setRightComponent(splitPane1);
 
-    this.add(splitPane);
+    this.add(splitPane2);
+
   }
 }
