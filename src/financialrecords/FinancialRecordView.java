@@ -2,6 +2,7 @@ package financialrecords;
 
 import financialrecords.records.Record;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -10,6 +11,13 @@ public final class FinancialRecordView extends JFrame {
   private int width = 750;
   private int height = 500;
   private JTable finaltable;
+  private JButton addIncomeButton = new JButton(" Add Income ");
+  private JButton addExpenseButton = new JButton("Add Expense");
+  private JButton addUpdateButton = new JButton("Update Record");
+  private JButton addDeleteButton = new JButton("Delete Record");
+  private JButton thisWeek = new JButton("This Week");
+  private JButton thisMonth = new JButton("This Month");
+  private JButton thisYear = new JButton("This Year");
 
   public FinancialRecordView(final FinancialRecordModel frmodel) {
     this.setVisible(true);
@@ -22,25 +30,20 @@ public final class FinancialRecordView extends JFrame {
     controls.setSize(200,500);
     controls.setBackground(Color.white);
     controls.setVisible(true);
-//    controls.setLayout(new BoxLayout(controls, BoxLayout.Y_AXIS));
     controls.setLayout(new GridLayout(0,1));
 
-    JButton addIncomeButton = new JButton(" Add Income ");
     addIncomeButton.setBackground(Color.white);
     addIncomeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     controls.add(addIncomeButton);
 
-    JButton addExpenseButton = new JButton("Add Expense");
     addExpenseButton.setBackground(Color.white);
     addExpenseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     controls.add(addExpenseButton);
-    
-    JButton addUpdateButton = new JButton("Update Record");
+
     addUpdateButton.setBackground(Color.white);
     addUpdateButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     controls.add(addUpdateButton);
-    
-    JButton addDeleteButton = new JButton("Delete Record");
+
     addDeleteButton.setBackground(Color.white);
     addDeleteButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     controls.add(addDeleteButton);
@@ -59,16 +62,13 @@ public final class FinancialRecordView extends JFrame {
     controlBar.setBackground(Color.gray);
     controlBar.setVisible(true);
     controlBar.setLayout(new GridLayout(1,0));
-    
-    JButton thisWeek = new JButton("This Week");
+
     thisWeek.setAlignmentX(Component.CENTER_ALIGNMENT);
     controlBar.add(thisWeek);
-    
-    JButton thisMonth = new JButton("This Month");
+
     thisMonth.setAlignmentX(Component.CENTER_ALIGNMENT);
     controlBar.add(thisMonth);
-    
-    JButton thisYear = new JButton("This Year");
+
     thisYear.setAlignmentX(Component.CENTER_ALIGNMENT);
     controlBar.add(thisYear);
 
@@ -84,7 +84,6 @@ public final class FinancialRecordView extends JFrame {
     splitPane2.setRightComponent(splitPane1);
 
     this.add(splitPane2);
-
   }
   
   public void setTableRecord(final FinancialRecordModel frmodel) {
@@ -115,5 +114,33 @@ public final class FinancialRecordView extends JFrame {
     
     finaltable = new JTable();
     finaltable.setModel(tabModel);
+  }
+
+  void addIncomeButtonListener(ActionListener listenForAddIncomeButton) {
+    addIncomeButton.addActionListener(listenForAddIncomeButton);
+  }
+
+  void addExpenseButtonListener(ActionListener listenForAddExpenseButton) {
+    addExpenseButton.addActionListener(listenForAddExpenseButton);
+  }
+
+  void addUpdateButtonListener(ActionListener listenForAddUpdateButton) {
+    addUpdateButton.addActionListener(listenForAddUpdateButton);
+  }
+
+  void addDeleteButtonListener(ActionListener listenForAddDeleteButton) {
+    addDeleteButton.addActionListener(listenForAddDeleteButton);
+  }
+
+  void addThisWeekListener(ActionListener listenForAddThisWeekButton) {
+    thisWeek.addActionListener(listenForAddThisWeekButton);
+  }
+
+  void addThisMonthListener(ActionListener listenForAddThisMonthButton) {
+    thisMonth.addActionListener(listenForAddThisMonthButton);
+  }
+
+  void addThisYearListener(ActionListener listenForAddThisYearButton) {
+    thisYear.addActionListener(listenForAddThisYearButton);
   }
 }
