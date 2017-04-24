@@ -2,6 +2,7 @@ package signin;
 
 
 import financialrecords.FinancialRecordView;
+import gui.Welcome;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,8 +22,11 @@ public class SignInView extends JFrame {
   private JLabel hint = new JLabel(txt.toString());
 
   public SignInView() {
+    Welcome buf = new Welcome();
     this.setVisible(true);
     this.setLocationRelativeTo(null);
+    this.setSize(width,height);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -41,6 +45,7 @@ public class SignInView extends JFrame {
     check.setAlignmentX(Component.CENTER_ALIGNMENT);
     panel.add(check);
 
+    this.add(panel);
   }
 
   void addCheckListener(ActionListener listenForCheckButton) {
