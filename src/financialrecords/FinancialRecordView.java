@@ -12,6 +12,7 @@ public class FinancialRecordView extends JFrame {
     this.setVisible(true);
     this.setResizable(true);
     this.setLocationRelativeTo(null);
+    this.setSize(width,height);
     this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     JPanel controls = new JPanel();
@@ -21,24 +22,25 @@ public class FinancialRecordView extends JFrame {
     controls.setLayout(new BoxLayout(controls, BoxLayout.Y_AXIS));
 
     JButton addIncomeButton = new JButton("Add Income");
-    addIncomeButton.setBackground(Color.black);
+    addIncomeButton.setBackground(Color.white);
     addIncomeButton.setAlignmentX(Component.LEFT_ALIGNMENT);
     controls.add(addIncomeButton);
 
     JButton addExpenseButton = new JButton("Add Income");
-    addExpenseButton.setBackground(Color.black);
+    addExpenseButton.setBackground(Color.white);
     addExpenseButton.setAlignmentX(Component.LEFT_ALIGNMENT);
     controls.add(addExpenseButton);
 
     JPanel table = new JPanel();
-    table.setSize(550,450);
+    table.setSize(550,400);
     table.setBackground(Color.black);
     table.setVisible(true);
 
     JPanel controlBar = new JPanel();
-    controlBar.setSize(550, 50);
+    controlBar.setSize(550, 100);
     controlBar.setBackground(Color.gray);
     controlBar.setVisible(true);
+    controlBar.setLayout(new GridLayout(0,1));
 
     // nanti pake JScrollPane
     JTable allRecords = new JTable();
@@ -46,6 +48,7 @@ public class FinancialRecordView extends JFrame {
 
     // biar resizable pake JSplitPane
     JSplitPane splitPane1 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, controlBar, table);
+    splitPane1.setDividerSize(0);
     JSplitPane splitPane2 = new JSplitPane();
     splitPane2.setSize(width,height);
     splitPane2.setDividerSize(0);
