@@ -16,7 +16,7 @@ public class SignInView extends JFrame {
   private int width = 200;
   private int height = 150;
   private JLabel passwtxt = new JLabel("Password : ");
-  private JTextField inputPassword = new JTextField();
+  private JPasswordField inputPassword = new JPasswordField();
   private JButton check = new JButton("OK");
   private StringBuffer txt = new StringBuffer("");
   private JLabel hint = new JLabel(txt.toString());
