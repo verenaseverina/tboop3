@@ -10,6 +10,7 @@ public class Welcome extends JPanel {
     frame.setSize(200,100);
     frame.setVisible(true);
     frame.setLocationRelativeTo(null);
-    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    //frame.setVisible(false);
   }
 }
