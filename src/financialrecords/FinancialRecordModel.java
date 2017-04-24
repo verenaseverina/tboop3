@@ -2,6 +2,7 @@ package financialrecords;
 
 import java.util.ArrayList;
 import financialrecords.records.Record;
+import financialrecords.records.recordderivative.Income;
 import parse.Parse;
 
 /**
@@ -46,6 +47,8 @@ public class FinancialRecordModel {
    * @param parser adalah kelas untuk melakukan parsing
    */
   public FinancialRecordModel(Parse parser) {
+    income = new ArrayList<>();
+    expense = new ArrayList<>();
     for (int idx = 0; idx < parser.getIn().size(); idx++) {
       income.add(idx,parser.getIn().get(idx));
     }
@@ -142,5 +145,9 @@ public class FinancialRecordModel {
    */
   public void setSavings(long tabungan) {
     savings = tabungan;
+  }
+
+  int size() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 }

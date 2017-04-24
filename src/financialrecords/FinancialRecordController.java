@@ -25,24 +25,25 @@ public class FinancialRecordController {
    * @param parser adalah kelas untuk melakukan parsing
    */
   public FinancialRecordController(Parse parser) {
-    for (int idx = 0; idx < parser.getIn().size(); idx++) {
-      frmodel.setIncome("add", idx, parser.getIn().get(idx));
-    }
-    
-    for (int idx = 0; idx < parser.getOut().size(); idx++) {
-      frmodel.setExpense("add", idx, parser.getOut().get(idx));
-    }
-    
-    long sumIn = 0;
-    for (int idx = 0; idx < frmodel.getIncome().size(); idx++) {
-      sumIn += frmodel.getIncome().get(idx).getAmount();
-    }
-
-    long sumOut = 0;
-    for (int idx = 0; idx < frmodel.getExpense().size(); idx++) {
-      sumOut += frmodel.getExpense().get(idx).getAmount();
-    }
-    frmodel.setBalance(sumIn-sumOut);
+    frmodel = new FinancialRecordModel(parser);
+//    for (int idx = 0; idx < parser.getIn().size(); idx++) {
+//      frmodel.setIncome("add", idx, parser.getIn().get(idx));
+//    }
+//    
+//    for (int idx = 0; idx < parser.getOut().size(); idx++) {
+//      frmodel.setExpense("add", idx, parser.getOut().get(idx));
+//    }
+//    
+//    long sumIn = 0;
+//    for (int idx = 0; idx < frmodel.getIncome().size(); idx++) {
+//      sumIn += frmodel.getIncome().get(idx).getAmount();
+//    }
+//
+//    long sumOut = 0;
+//    for (int idx = 0; idx < frmodel.getExpense().size(); idx++) {
+//      sumOut += frmodel.getExpense().get(idx).getAmount();
+//    }
+//    frmodel.setBalance(sumIn-sumOut);
   }
 
   /**
