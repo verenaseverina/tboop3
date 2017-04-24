@@ -4,6 +4,8 @@ import financialrecords.records.NewDate;
 import financialrecords.records.Record;
 import financialrecords.records.recordderivative.Expense;
 import financialrecords.records.recordderivative.Income;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Kelas controller untuk financial records.
@@ -25,6 +27,64 @@ public class FinancialRecordController {
   public FinancialRecordController(FinancialRecordModel frmodel, FinancialRecordView frview) {
     this.frmodel = frmodel;
     this.frview = frview;
+
+    this.frview.addIncomeButtonListener(new addIncomeListener());
+    this.frview.addExpenseButtonListener(new addExpenseListener());
+    this.frview.addUpdateButtonListener(new addUpdateListener());
+    this.frview.addDeleteButtonListener(new addDeleteListener());
+    this.frview.addThisWeekListener(new thisWeekListener());
+    this.frview.addThisMonthListener(new thisMonthListener());
+    this.frview.addThisYearListener(new thisYearListener());
+
+  }
+
+  class addIncomeListener implements ActionListener {
+
+    public void actionPerformed(ActionEvent e) {
+
+    }
+  }
+
+  class addExpenseListener implements ActionListener {
+
+    public void actionPerformed(ActionEvent e) {
+
+    }
+  }
+
+  class addUpdateListener implements ActionListener {
+
+    public void actionPerformed(ActionEvent e) {
+
+    }
+  }
+
+  class addDeleteListener implements ActionListener {
+
+    public void actionPerformed(ActionEvent e) {
+
+    }
+  }
+
+  class thisWeekListener implements ActionListener {
+
+    public void actionPerformed(ActionEvent e) {
+
+    }
+  }
+
+  class thisMonthListener implements ActionListener {
+
+    public void actionPerformed(ActionEvent e) {
+
+    }
+  }
+
+  class thisYearListener implements ActionListener {
+
+    public void actionPerformed(ActionEvent e) {
+
+    }
   }
 
   /**
