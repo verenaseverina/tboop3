@@ -7,10 +7,5 @@ public class Welcome extends JPanel {
     JFrame frame = new JFrame();
     String text = "Welcome to Monius, Money Genius!";
     JOptionPane.showMessageDialog(frame, text, "Welcome", JOptionPane.PLAIN_MESSAGE);
-    frame.setSize(200,100);
-    frame.setVisible(true);
-    frame.setLocationRelativeTo(null);
-    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    //frame.setVisible(false);
   }
 }
