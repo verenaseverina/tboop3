@@ -5,6 +5,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 
 import financialrecords.records.Record;
+import financialrecords.records.recordderivative.Expense;
+import financialrecords.records.recordderivative.Income;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import java.io.File;
@@ -38,11 +40,11 @@ public class Parse {
   /**
    * Atribut array list of financialrecords.records.Record dari parse (data pemasukkan).
    */
-  private ArrayList<Record> in;
+  private ArrayList<Income> in;
   /**
    * Atribut array list of financialrecords.records.Record dari parse (data pengeluaran).
    */
-  private ArrayList<Record> out;
+  private ArrayList<Expense> out;
   /**
    * Atribut array of String dari parse (Password).
    */
@@ -89,7 +91,7 @@ public class Parse {
           String jumlah = elRecord.getElementsByTagName("jumlah").item(0).getTextContent();
           String deskripsi = elRecord.getElementsByTagName("deskripsi").item(0).getTextContent();
           String kategori = elRecord.getElementsByTagName("kategori").item(0).getTextContent();
-          Record pemasukkan = new Record(tanggal, jumlah, deskripsi, kategori);
+          Income pemasukkan = new Income(tanggal, jumlah, deskripsi, kategori);
           in.add(pemasukkan);
         }
         if (isiRecordOut.getNodeType() == Node.ELEMENT_NODE) {
@@ -97,7 +99,7 @@ public class Parse {
           String tanggal = elRecord.getElementsByTagName("tanggal").item(0).getTextContent();
           String jumlah = elRecord.getElementsByTagName("jumlah").item(0).getTextContent();
           String deskripsi = elRecord.getElementsByTagName("deskripsi").item(0).getTextContent();
-          Record pengeluaran = new Record(tanggal, jumlah, deskripsi);
+          Expense pengeluaran = new Expense(tanggal, jumlah, deskripsi);
           out.add(pengeluaran);
         }
       }      
@@ -195,7 +197,7 @@ public class Parse {
    * Getter in.
    * @return in
    */
-  public ArrayList<Record> getIn(){
+  public ArrayList<Income> getIn(){
     return in;
   }
   
@@ -203,7 +205,7 @@ public class Parse {
    * Getter out.
    * @return out
    */
-  public ArrayList<Record> getOut(){
+  public ArrayList<Expense> getOut(){
     return out;
   }
   
@@ -219,7 +221,7 @@ public class Parse {
    * Setter in.
    * @param inTemp array list yang ingin disimpan
    */  
-  public void setIn(ArrayList<Record> inTemp){
+  public void setIn(ArrayList<Income> inTemp){
     for (int idx = 0; idx < in.size(); idx++) {
       in.remove(idx);
     }
@@ -233,7 +235,7 @@ public class Parse {
    * Setter out.
    * @param outTemp array list yang ingin disimpan
    */  
-  public void setOut(ArrayList<Record> outTemp){
+  public void setOut(ArrayList<Expense> outTemp){
     for (int idx = 0; idx < out.size(); idx++) {
       out.remove(idx);
     }
