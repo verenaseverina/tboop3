@@ -7,5 +7,5 @@ public class MvcFinancialRecord {
   FinancialRecordModel frModel = new FinancialRecordModel();
   FinancialRecordView frView = new FinancialRecordView();
 
-  FinancialRecordController frController = new FinancialRecordController(frModel,frView);
+  //FinancialRecordController frController = new FinancialRecordController(frModel,frView);
 }
