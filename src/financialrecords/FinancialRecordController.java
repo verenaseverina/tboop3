@@ -4,7 +4,6 @@ import financialrecords.records.NewDate;
 import financialrecords.records.Record;
 import financialrecords.records.recordderivative.Expense;
 import financialrecords.records.recordderivative.Income;
-import parse.Parse;
 
 /**
  * Kelas controller untuk financial records.
@@ -20,30 +19,12 @@ public class FinancialRecordController {
    */
   private FinancialRecordModel frmodel;
 
-  /**
-   * Ctor dari FinancialRecordController.
-   * @param parser adalah kelas untuk melakukan parsing
-   */
-  public FinancialRecordController(Parse parser) {
-    frmodel = new FinancialRecordModel(parser);
-//    for (int idx = 0; idx < parser.getIn().size(); idx++) {
-//      frmodel.setIncome("add", idx, parser.getIn().get(idx));
-//    }
-//    
-//    for (int idx = 0; idx < parser.getOut().size(); idx++) {
-//      frmodel.setExpense("add", idx, parser.getOut().get(idx));
-//    }
-//    
-//    long sumIn = 0;
-//    for (int idx = 0; idx < frmodel.getIncome().size(); idx++) {
-//      sumIn += frmodel.getIncome().get(idx).getAmount();
-//    }
-//
-//    long sumOut = 0;
-//    for (int idx = 0; idx < frmodel.getExpense().size(); idx++) {
-//      sumOut += frmodel.getExpense().get(idx).getAmount();
-//    }
-//    frmodel.setBalance(sumIn-sumOut);
+  private FinancialRecordView frview;
+
+
+  public FinancialRecordController(FinancialRecordModel frmodel, FinancialRecordView frview) {
+    this.frmodel = frmodel;
+    this.frview = frview;
   }
 
   /**
