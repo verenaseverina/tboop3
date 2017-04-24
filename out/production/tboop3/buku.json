@@ -1,0 +1,31 @@
+{
+	"SignIn":[
+		{
+			"IsLock":"true",
+			"Password":"123456",
+			"Deskripsi":"blablabla"
+		}
+	]
+
+	"Record":[
+		{
+			"Type":"In",
+			"Tanggal":"13/02/2017"
+			"Jumlah":"2000" ,
+			"Deskripsi":"blablabla"
+		},
+		{
+			"Type":"In",
+			"Tanggal":"14/02/2017"
+			"Jumlah":"4000" ,
+			"Deskripsi":"blablabla"
+		},
+		{
+			"Type":"Out",
+			"Tanggal":"14/02/2017"
+			"Jumlah":"1000" ,
+			"Kategori":"Makanan Halal" ,
+			"Deskripsi":"blablabla"
+		}
+	]
+}

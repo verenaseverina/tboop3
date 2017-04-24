@@ -90,18 +90,18 @@ public final class FinancialRecordView extends JFrame {
   public void setTableRecord(final FinancialRecordModel frmodel) {
 
     
-    String[] column = {"tanggal","jumlah","deskripsi","kategori"};
-    Object[][] objData = new Object[frmodel.getExpense().size()+frmodel.getIncome().size()][4];
+    String[] column = {"Expense/Income", "tanggal","jumlah","deskripsi","kategori"};
+    Object[][] objData = new Object[frmodel.getExpense().size()+frmodel.getIncome().size()][5];
 
     int idx = 0;
     for(Record itrExp : frmodel.getExpense()){
-        String[] arrData = {itrExp.getDate().dateToStr(), Long.toString(itrExp.getAmount()), itrExp.getDescription(), itrExp.getCategory()};
+        String[] arrData = {"Expense", itrExp.getDate().dateToStr(), Long.toString(itrExp.getAmount()), itrExp.getDescription(), itrExp.getCategory()};
         objData[idx] = arrData;
         idx++;
     }
     
     for(Record itrExp : frmodel.getIncome()){
-        String[] arrData = {itrExp.getDate().dateToStr(), Long.toString(itrExp.getAmount()), itrExp.getDescription(), itrExp.getCategory()};
+        String[] arrData = {"Income",itrExp.getDate().dateToStr(), Long.toString(itrExp.getAmount()), itrExp.getDescription(), itrExp.getCategory()};
         objData[idx] = arrData;
         idx++;
     }

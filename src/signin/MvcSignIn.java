@@ -9,7 +9,7 @@ public class MvcSignIn {
   public void checkPassword() {
     if(siModel.isLock()) {
       SignInView siView = new SignInView();
-      SignInController siCOntroller = new SignInController((siView, siModel));
+      SignInController siCOntroller = new SignInController(siView, siModel);
     } else {
 
     }
