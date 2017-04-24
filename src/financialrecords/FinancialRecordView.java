@@ -46,11 +46,13 @@ public final class FinancialRecordView extends JFrame {
     controls.add(addDeleteButton);
     
     JPanel table = new JPanel();
+    table.setLayout(new BorderLayout());
     table.setSize(550,400);
     table.setBackground(Color.white);
     table.setVisible(true);
     setTableRecord(frmodel);
     table.add(finaltable);
+    JScrollPane tableContainer = new JScrollPane(table);
 
     JPanel controlBar = new JPanel();
     controlBar.setSize(550, 100);
