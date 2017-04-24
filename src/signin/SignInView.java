@@ -22,7 +22,6 @@ public class SignInView extends JFrame {
   private JLabel hint = new JLabel(txt.toString());
 
   public SignInView() {
-    Welcome buf = new Welcome();
     this.setVisible(true);
     this.setLocationRelativeTo(null);
     this.setSize(width,height);

@@ -46,26 +46,6 @@ public class SignInController {
   }
 
   /**
-   * Mengecek apakah program dikunci.
-   * @return boolean yang menyatakan apakah program dikunci
-   */
-  public boolean isLock() {
-    return (Integer.getInteger(signInM.getId())==1);
-  }
-
-  /**
-   * Prosedur untuk mengganti password.
-   * @param id adalah String yang menunjukkan apakah program punya password atau tidak
-   * @param pass adalah String kata kunci untuk mengunci program
-   * @param desc adalah String yang menggambarkan kata kunci
-   */
-  public void changePassword(String id, String pass, String desc) {
-    signInM.setId(id);
-    signInM.setPass(pass);
-    signInM.setDescription(desc);
-  }
-
-  /**
    * Mengecek apakah password sesuai.
    * @param pass adalah String masukan yang akan dicocokan
    * @return boolean yang menyatakan apakah password yang dimasukan sesuai.

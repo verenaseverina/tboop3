@@ -92,4 +92,24 @@ public class SignInModel {
   public void setDescription(String desc) {
     description = desc;
   }
+
+  /**
+   * Mengecek apakah program dikunci.
+   * @return boolean yang menyatakan apakah program dikunci
+   */
+  public boolean isLock() {
+    return (Integer.getInteger(id) == 1);
+  }
+
+  /**
+   * Prosedur untuk mengganti password.
+   * @param id adalah String yang menunjukkan apakah program punya password atau tidak
+   * @param pass adalah String kata kunci untuk mengunci program
+   * @param desc adalah String yang menggambarkan kata kunci
+   */
+  public void changePassword(String id, String pass, String desc) {
+    setId(id);
+    setPass(pass);
+    setDescription(desc);
+  }
 }

@@ -5,7 +5,17 @@ package signin;
  */
 public class MvcSignIn {
   SignInModel siModel = new SignInModel();
-  SignInView siView = new SignInView();
 
-  SignInController siController = new SignInController(siView, siModel);
+  public void checkPassword() {
+    if(siModel.isLock()) {
+      SignInView siView = new SignInView();
+      SignInController siCOntroller = new SignInController((siView, siModel));
+    } else {
+
+    }
+  }
+
+//  SignInView siView = new SignInView();
+//
+//  SignInController siController = new SignInController(siView, siModel);
 }

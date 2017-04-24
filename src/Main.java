@@ -7,6 +7,7 @@ import signin.MvcSignIn;
 public class Main {
   public static void main(String args[]) {
     Welcome welc = new Welcome();
-    //MvcSignIn signin = new MvcSignIn();
+    MvcSignIn signin = new MvcSignIn();
+
   }
 }
