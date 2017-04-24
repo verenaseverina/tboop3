@@ -2,6 +2,8 @@ package financialrecords;
 
 import financialrecords.records.NewDate;
 import financialrecords.records.Record;
+import financialrecords.records.recordderivative.Expense;
+import financialrecords.records.recordderivative.Income;
 import parse.Parse;
 
 /**
@@ -177,8 +179,8 @@ public class FinancialRecordController {
    * @param idx adalah index dari Record yang akan dihapus
    */
   public void deleteIncome(int idx) {
-    Record temprec = new Record("","0","","");
-    frmodel.setIncome("delete", idx, temprec);
+    Income tempinc = new Income("","0","","");
+    frmodel.setIncome("delete", idx, tempinc);
   }
 
   /**
@@ -186,8 +188,8 @@ public class FinancialRecordController {
    * @param idx adalah index dari Record yang akan dihapus
    */
   public void deleteExpense(int idx) {
-    Record temprec = new Record("","0","","");
-    frmodel.setExpense("delete", idx, temprec);
+    Expense tempexp = new Expense("","0","","");
+    frmodel.setExpense("delete", idx, tempexp);
   }
 
   /**
