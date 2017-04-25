@@ -38,6 +38,10 @@ import org.w3c.dom.Element;
  */
 public class Parse {
   /**
+   * Atribut Long berupa jumlah tabungan.
+   */
+  private long tabungan;
+  /**
    * Atribut array list of financialrecords.records.Record dari parse (data pemasukkan).
    */
   private ArrayList<Income> in;
@@ -75,15 +79,22 @@ public class Parse {
       NodeList recordListIn = docRecord.getElementsByTagName("recordin");
       NodeList recordListOut = docRecord.getElementsByTagName("recordout");
       NodeList lock = docRecord.getElementsByTagName("lock");
+      NodeList tab = docRecord.getElementsByTagName("tabungan");
       for (int idx = 0; idx < recordListIn.getLength(); idx++) {
         Node isiLock = lock.item(idx);
         Node isiRecordIn = recordListIn.item(idx);
         Node isiRecordOut = recordListOut.item(idx);
+        Node isiTabungan = tab.item(idx);
         if (isiLock.getNodeType() == Node.ELEMENT_NODE) {
           Element elRecord = (Element) isiLock;
           password[0] = elRecord.getAttribute("id");
           password[1] = elRecord.getElementsByTagName("password").item(0).getTextContent();
           password[2] = elRecord.getElementsByTagName("deskripsi").item(0).getTextContent();
+        }
+        if (isiTabungan.getNodeType() == Node.ELEMENT_NODE) {
+          Element elRecord = (Element) isiLock;
+          String jmlTabungan = elRecord.getElementsByTagName("jumlah").item(0).getTextContent();
+          tabungan = Long.getLong(jmlTabungan);
         }
         if (isiRecordIn.getNodeType() == Node.ELEMENT_NODE) {
           Element elRecord = (Element) isiRecordIn;
@@ -134,6 +145,17 @@ public class Parse {
       Element desc = recordDoc.createElement("deskripsi");
       desc.appendChild(recordDoc.createTextNode(password[2]));
       lock.appendChild(desc);
+      
+      Element tab = recordDoc.createElement("tabungan");
+      rootRecord.appendChild(tab);
+      
+      Attr idTabungan = recordDoc.createAttribute("id");
+      idTabungan.setValue("1");
+      tab.setAttributeNode(idTabungan);
+      
+      Element jumlahTab = recordDoc.createElement("jumlah");
+      jumlahTab.appendChild(recordDoc.createTextNode(Long.toString(tabungan)));
+      tab.appendChild(jumlahTab);
 
       for (Record recIn : in) {
         Element recordin = recordDoc.createElement("recordin");
@@ -217,6 +239,10 @@ public class Parse {
     return password;
   }
   
+  public long getTabungan() {
+    return tabungan;
+  }
+  
   /**
    * Setter in.
    * @param inTemp array list yang ingin disimpan
@@ -253,5 +279,9 @@ public class Parse {
     password[0] = pass[0];
     password[1] = pass[1];
     password[2] = pass[2];
+  }
+  
+  public void setTabungan(int tab) {
+    tabungan = tab;
   }
 }
