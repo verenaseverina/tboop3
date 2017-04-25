@@ -4,8 +4,12 @@ import financialrecords.records.NewDate;
 import financialrecords.records.Record;
 import financialrecords.records.recordderivative.Expense;
 import financialrecords.records.recordderivative.Income;
+import mediator.Mediator;
+import parse.Parse;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Kelas controller untuk financial records.
@@ -20,13 +24,19 @@ public class FinancialRecordController {
    * Atribut financialrecords.FinancialRecordModel.
    */
   private FinancialRecordModel frmodel;
-
+  /**
+   * Atribut financialrecords.FinancialRecordView.
+   */
   private FinancialRecordView frview;
+  /**
+   * Atribut Mediator.
+   */
+  private Mediator med;
 
-
-  public FinancialRecordController(FinancialRecordModel frmodel, FinancialRecordView frview) {
-    this.frmodel = frmodel;
-    this.frview = frview;
+  public FinancialRecordController(Mediator _med, Parse parser) {
+    med = _med;
+    this.frmodel = new FinancialRecordModel(parser);
+    this.frview = new FinancialRecordView(frmodel);
 
     this.frview.addIncButtonListener(new addIncomeListener());
     this.frview.addExpButtonListener(new addExpenseListener());
@@ -87,10 +97,17 @@ public class FinancialRecordController {
   }
 
   /**
+   * Menampilkan atau menyembunyikan tampilan financial record
+   */
+  public void visible(boolean state) {
+    frview.setVisible(state);
+  }
+
+  /**
    * Menambahkan Record pada ArrayList income.
    * @param rec adalah Record yang akan ditambahkan
    */
-  public void addIncome(Record rec) {
+  public void addIncome(Income rec) {
     int idx = findDateIncome(rec.getDate());
     frmodel.setIncome("add", idx, rec);
   }
@@ -133,7 +150,7 @@ public class FinancialRecordController {
    * Menambahkan Record pada ArrayList outcome.
    * @param rec adalah Record yang akan ditambahkan
    */
-  public void addOutcome(Record rec) {
+  public void addOutcome(Expense rec) {
     int idx = findDateExpense(rec.getDate());
     frmodel.setExpense("add", idx, rec);
   }
@@ -220,7 +237,7 @@ public class FinancialRecordController {
    * @param idx adalah index dari Record yang akan dihapus
    */
   public void deleteIncome(int idx) {
-    Income tempinc = new Income("","0","","");
+    Income tempinc = new Income("00/00/0000","0","","");
     frmodel.setIncome("delete", idx, tempinc);
   }
 
@@ -229,7 +246,7 @@ public class FinancialRecordController {
    * @param idx adalah index dari Record yang akan dihapus
    */
   public void deleteExpense(int idx) {
-    Expense tempexp = new Expense("","0","","");
+    Expense tempexp = new Expense("00/00/0000","0","","");
     frmodel.setExpense("delete", idx, tempexp);
   }
 
@@ -257,5 +274,41 @@ public class FinancialRecordController {
     frmodel.getExpense().get(idx).setAmount(amount);
     frmodel.getExpense().get(idx).setCategory(category);
     frmodel.getExpense().get(idx).setDescription(description);
+  }
+
+  /**
+   * Mengupdate jumlah tabungan
+   * @param amount jumlah yang ingin ditabung
+   */
+  public void updateSavings(int amount){
+    frmodel.setSavings(amount);
+  }
+
+  /**
+   * Mengambil jumlah yang ingin tabungan
+   */
+  public long getSavings(){
+    return frmodel.getSavings();
+  }
+
+  /**
+   * Mengambil arraylist income
+   */
+  public ArrayList<Income> getIncome() {
+    return frmodel.getIncome();
+  }
+
+  /**
+   * Mengambil arraylist outcome
+   */
+  public ArrayList<Expense> getOutcome() {
+    return frmodel.getExpense();
+  }
+
+  /**
+   * Menyimpan data pengeluaran dan pemasukan
+   */
+  public void saveData(){
+    frmodel.saveData();
   }
 }

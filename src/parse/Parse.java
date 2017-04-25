@@ -40,7 +40,7 @@ public class Parse {
   /**
    * Atribut Long berupa jumlah tabungan.
    */
-  private Long tabungan;
+  private long tabungan;
   /**
    * Atribut array list of financialrecords.records.Record dari parse (data pemasukkan).
    */
@@ -94,7 +94,7 @@ public class Parse {
         if (isiTabungan.getNodeType() == Node.ELEMENT_NODE) {
           Element elRecord = (Element) isiTabungan;
           String jmlt = elRecord.getElementsByTagName("jumlah").item(0).getTextContent();
-          tabungan = Long.getLong(jmlt);
+          tabungan = Long.parseLong(jmlt);
         }
         if (isiRecordIn.getNodeType() == Node.ELEMENT_NODE) {
           Element elRecord = (Element) isiRecordIn;
@@ -239,7 +239,7 @@ public class Parse {
     return password;
   }
   
-  public Long getTabungan() {
+  public long getTabungan() {
     return tabungan;
   }
   
@@ -281,7 +281,7 @@ public class Parse {
     password[2] = pass[2];
   }
   
-  public void setTabungan(Long tab) {
+  public void setTabungan(long tab) {
     tabungan = tab;
   }
 }

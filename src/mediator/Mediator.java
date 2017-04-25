@@ -16,9 +16,38 @@ public class Mediator {
 
   public Mediator() {
     parser = new Parse();
-    //frControl = new FinancialRecordController();
     signInControl = new SignInController(this,parser);
+    frControl = new FinancialRecordController(this,parser);
     settingControl = new SettingController(this);
+  }
+
+  /**
+   * Prosedur untuk menyimpan data pengeluaran dan pemasukan
+   */
+  public void saveSavings(int amount) {
+    frControl.updateSavings(amount);
+    frControl.saveData();
+  }
+
+  /**
+   * Prosedur untuk mengambil data pengeluaran dan pemasukan
+   */
+  public long getSavings() {
+    return frControl.getSavings();
+  }
+
+  /**
+   * Prosedur untuk menghapus semua pengeluaran dan pemasukan
+   */
+  public void deleteInOut(){
+    for(int i=0;i<frControl.getOutcome().size();i++) {
+      frControl.deleteExpense(i);
+    }
+    for(int i=0;i<frControl.getIncome().size();i++) {
+      frControl.deleteIncome(i);
+    }
+    frControl.updateSavings(0);
+    frControl.saveData();
   }
 
   /**
@@ -58,5 +87,9 @@ public class Mediator {
 
   public void setSignInVisible(boolean state){
     signInControl.visible(state);
+  }
+
+  public void setFrControlVisible(boolean state){
+    frControl.visible(state);
   }
 }

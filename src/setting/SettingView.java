@@ -13,11 +13,14 @@ public class SettingView extends JDialog{
   private JCheckBox lockCheckBox = new JCheckBox("Use Password");
   private JPasswordField userPassword = new JPasswordField(10);
   private JTextField hint = new JTextField(10);
+  private JTextField savings = new JTextField(10);
   private JTabbedPane tabs = new JTabbedPane();
   private JButton acceptButton = new JButton("OK");
   private JButton cancelButton = new JButton("Cancel");
-  private JButton resetButton = new JButton("Reset All");
-  private JLabel successLabel = new JLabel("Data has been reset successfully");
+  private JButton resetButton = new JButton("Default");
+  private JButton deleteButton = new JButton("Delete Data");
+  private JLabel successLabel = new JLabel("Setting has been set to default");
+  private JLabel deleteLabel = new JLabel("Data has been deleted successfully");
 
   public SettingView(){
     this.setLocationRelativeTo(null);
@@ -31,8 +34,12 @@ public class SettingView extends JDialog{
     JPanel firstSubPanel2 = new JPanel();
     JPanel firstSubPanel3 = new JPanel();
     JPanel secondPanel = new JPanel();
+    JPanel secondSubPanel1 = new JPanel();
+    JPanel secondSubPanel2 = new JPanel();
+    JPanel secondSubPanel3 = new JPanel();
     JLabel hintLabel = new JLabel("Hint            ");
     JLabel passwordLabel = new JLabel("Password");
+    JLabel savingLabel = new JLabel("Jumlah yang ingin ditabung");
 
     globalPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
     globalPanel.add(acceptButton);
@@ -52,16 +59,31 @@ public class SettingView extends JDialog{
     firstSubPanel3.add(userPassword);
 
     //Second Panel Content
+    secondSubPanel1.setLayout(new FlowLayout(FlowLayout.LEFT));
+    secondSubPanel1.add(savingLabel);
+    secondSubPanel1.add(savings);
+
     successLabel.setVisible(false);
-    secondPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-    secondPanel.add(resetButton);
-    secondPanel.add(successLabel);
+    secondSubPanel2.setLayout(new FlowLayout(FlowLayout.LEFT));
+    secondSubPanel2.add(resetButton);
+    secondSubPanel2.add(successLabel);
+
+    deleteLabel.setVisible(false);
+    secondSubPanel3.setLayout(new FlowLayout(FlowLayout.LEFT));
+    secondSubPanel3.add(deleteButton);
+    secondSubPanel3.add(deleteLabel);
 
     firstPanel.setLayout(new BoxLayout(firstPanel,BoxLayout.Y_AXIS));
     firstPanel.add(firstSubPanel1);
     firstPanel.add(firstSubPanel2);
     firstPanel.add(firstSubPanel3);
     firstPanel.add(Box.createVerticalStrut(100));
+
+    secondPanel.setLayout(new BoxLayout(secondPanel,BoxLayout.Y_AXIS));
+    secondPanel.add(secondSubPanel1);
+    secondPanel.add(secondSubPanel2);
+    secondPanel.add(secondSubPanel3);
+    secondPanel.add(Box.createVerticalStrut(100));
     tabs.add("Privacy",firstPanel);
     tabs.add("Data",secondPanel);
 
@@ -74,6 +96,7 @@ public class SettingView extends JDialog{
     acceptButton.addActionListener(listenToEvent);
     cancelButton.addActionListener(listenToEvent);
     resetButton.addActionListener(listenToEvent);
+    deleteButton.addActionListener(listenToEvent);
   }
 
   JButton getOKButton() {
@@ -88,6 +111,10 @@ public class SettingView extends JDialog{
     return resetButton;
   }
 
+  JButton getDeleteButton(){
+    return deleteButton;
+  }
+
   JCheckBox getCheckBoxLock() {
     return lockCheckBox;
   }
@@ -100,7 +127,15 @@ public class SettingView extends JDialog{
     return hint;
   }
 
+  JTextField getSavings(){
+    return savings;
+  }
+
   JLabel getSuccessLabel(){
     return successLabel;
+  }
+
+  JLabel getDeleteLabel(){
+    return deleteLabel;
   }
 }

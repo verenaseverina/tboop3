@@ -2,8 +2,11 @@ package financialrecords;
 
 import java.util.ArrayList;
 import financialrecords.records.Record;
+import financialrecords.records.recordderivative.Expense;
 import financialrecords.records.recordderivative.Income;
 import parse.Parse;
+
+import javax.xml.transform.TransformerException;
 
 /**
  *
@@ -18,11 +21,11 @@ public class FinancialRecordModel {
   /**
    * Atribut array list of financialrecords.records.Record dari FRModel (data pemasukkan).
    */
-  private ArrayList<Record> income;
+  private ArrayList<Income> income;
   /**
    * Atribut array list of financialrecords.records.Record dari FRModel (data pengeluaran).
    */
-  private ArrayList<Record> expense;
+  private ArrayList<Expense> expense;
   /**
    * Atribut long dari FRModel (data saldo).
    */
@@ -31,7 +34,10 @@ public class FinancialRecordModel {
    * Atribut long dari FRModel (data tabungan).
    */
   private long savings;
-  
+  /**
+   * Atribut parser untuk mengupdate data.
+   */
+  private Parse parser;
   /**
    * Menginisialisasi atribut dari FRModel.
    */
@@ -47,6 +53,7 @@ public class FinancialRecordModel {
    * @param parser adalah kelas untuk melakukan parsing
    */
   public FinancialRecordModel(Parse parser) {
+    this.parser = parser;
     income = new ArrayList<>();
     expense = new ArrayList<>();
     for (int idx = 0; idx < parser.getIn().size(); idx++) {
@@ -66,6 +73,7 @@ public class FinancialRecordModel {
     for (int idx = 0; idx < expense.size(); idx++) {
       sumOut += expense.get(idx).getAmount();
     }
+    savings = parser.getTabungan();
     balance = sumIn - sumOut;
   }
   
@@ -73,7 +81,7 @@ public class FinancialRecordModel {
    * Getter income.
    * @return income
    */
-  public ArrayList<Record> getIncome() {
+  public ArrayList<Income> getIncome() {
     return income;
   }
   
@@ -81,7 +89,7 @@ public class FinancialRecordModel {
    * Getter expense.
    * @return expense
    */
-  public ArrayList<Record> getExpense() {
+  public ArrayList<Expense> getExpense() {
     return expense;
   }
   
@@ -107,7 +115,7 @@ public class FinancialRecordModel {
    * @param idx index dari array list
    * @param rec reocord yang ingin ditambahkan
    */
-  public void setIncome(String type, int idx, Record rec) {
+  public void setIncome(String type, int idx, Income rec) {
     if (type.compareTo("add") == 0) {
       income.add(idx, rec);
     } 
@@ -122,7 +130,7 @@ public class FinancialRecordModel {
    * @param idx index dari array list
    * @param rec reocord yang ingin ditambahkan
    */
-  public void setExpense(String type, int idx, Record rec) {
+  public void setExpense(String type, int idx, Expense rec) {
     if (type.compareTo("add") == 0) {
       expense.add(idx, rec);
     } 
@@ -145,6 +153,20 @@ public class FinancialRecordModel {
    */
   public void setSavings(long tabungan) {
     savings = tabungan;
+  }
+
+  /**
+   * Menyimpan semua data pengeluaran dan pemasukan
+   */
+  public void saveData() {
+    parser.setIn(income);
+    parser.setOut(expense);
+    parser.setTabungan(savings);
+    try {
+      parser.saveFile();
+    } catch (TransformerException e) {
+      e.printStackTrace();
+    }
   }
 
   int size() {

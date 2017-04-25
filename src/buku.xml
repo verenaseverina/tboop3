@@ -4,7 +4,7 @@
 		<password>adrian</password>
 		<deskripsi>nama saya</deskripsi>
 	</lock>
-        <tabungan id="1">
+	<tabungan id="1">
 		<jumlah>1000000</jumlah>
 	</tabungan>
 	<recordin id="1">

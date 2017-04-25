@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <buku>
-  <lock id="0">
-    <password/>
-    <deskripsi/>
+  <lock id="1">
+    <password>adrian</password>
+    <deskripsi>nama saya</deskripsi>
   </lock>
-  <recordin id="1989998602">
-    <tanggal>13/02/2017</tanggal>
-    <jumlah>2000</jumlah>
-    <deskripsi>blablabla</deskripsi>
-    <kategori>Makanan</kategori>
-  </recordin>
-  <recordout id="949816524">
-    <tanggal>14/02/2017</tanggal>
-    <jumlah>1000</jumlah>
-    <deskripsi>balbalbla</deskripsi>
-  </recordout>
+  <tabungan id="1">
+    <jumlah>1000000</jumlah>
+  </tabungan>
 </buku>
