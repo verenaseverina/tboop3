@@ -77,4 +77,25 @@ public class SignInController {
     signInM.changePassword(id,pass,desc);
     signInM.saveState();
   }
+
+  /**
+   * Prosedur untuk mengambil id signin
+   */
+  public String getSignInID() {
+    return signInM.getId();
+  }
+
+  /**
+   * Prosedur untuk mengambil password signin
+   */
+  public String getSignInPass() {
+    return signInM.getPass();
+  }
+
+  /**
+   * Prosedur untuk mengambil deskripsi password
+   */
+  public String getSignInDesc() {
+    return signInM.getDescription();
+  }
 }

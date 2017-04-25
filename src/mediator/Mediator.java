@@ -17,19 +17,46 @@ public class Mediator {
   public Mediator() {
     parser = new Parse();
     //frControl = new FinancialRecordController();
-    settingControl = new SettingController(this);
     signInControl = new SignInController(this,parser);
+    settingControl = new SettingController(this);
   }
 
+  /**
+   * Prosedur untuk mengambil id signin
+   */
+  public String getSignInID() {
+    return signInControl.getSignInID();
+  }
+
+  /**
+   * Prosedur untuk mengambil password signin
+   */
+  public String getSignInPass() {
+    return signInControl.getSignInPass();
+  }
+
+  /**
+   * Prosedur untuk mengambil deskripsi password
+   */
+  public String getSignInDesc() {
+    return signInControl.getSignInDesc();
+  }
+
+  /**
+   * Menyimpan informasi signin
+   * @param id Status dikunci atau tidak
+   * @param pass Password untuk membuka aplikasi
+   * @param desc Hint yang digunakan pengguna
+   */
   public void saveSignInState(String id, String pass, String desc) {
     signInControl.changePassword(id,pass,desc);
   }
 
-  public void showSetting(boolean state) {
+  public void setSettingVisible(boolean state) {
     settingControl.visible(state);
   }
 
-  public void showSignIn(boolean state){
+  public void setSignInVisible(boolean state){
     signInControl.visible(state);
   }
 }

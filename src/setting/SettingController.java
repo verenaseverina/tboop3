@@ -1,5 +1,6 @@
 package setting;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.TransducedAccessor_method_Double;
 import mediator.Mediator;
 
 import javax.print.attribute.standard.Media;
@@ -33,7 +34,13 @@ public class SettingController {
       settingV = new SettingView();
 
     settingV.setVisible(true);
-
+    settingV.getCheckBoxLock().setSelected(med.getSignInID().equals("1"));
+    if(settingV.getCheckBoxLock().isSelected()) {
+      settingV.getHint().setEditable(true);
+      settingV.getPasswordField().setEditable(true);
+      settingV.getHint().setText(med.getSignInDesc());
+      settingV.getPasswordField().setText(med.getSignInPass());
+    }
     settingV.addListener(new CheckListener());
   }
 
