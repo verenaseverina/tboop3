@@ -65,6 +65,9 @@ public class SettingController {
         if(!settingV.getCheckBoxLock().isSelected()) {
           settingV.getPasswordField().setText("");
           settingV.getHint().setText("");
+        } else {
+          settingV.getPasswordField().setText(med.getSignInPass());
+          settingV.getHint().setText(med.getSignInDesc());
         }
       }
     }

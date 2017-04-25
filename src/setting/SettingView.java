@@ -25,29 +25,39 @@ public class SettingView extends JDialog{
 
     JPanel globalPanel = new JPanel();
     JPanel firstPanel = new JPanel();
+    JPanel firstSubPanel1 = new JPanel();
+    JPanel firstSubPanel2 = new JPanel();
+    JPanel firstSubPanel3 = new JPanel();
     JPanel secondPanel = new JPanel();
-    JLabel hintLabel = new JLabel("Hint");
+    JLabel hintLabel = new JLabel("Hint            ");
     JLabel passwordLabel = new JLabel("Password");
 
     globalPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
     globalPanel.add(acceptButton);
     globalPanel.add(cancelButton);
 
-    firstPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-    firstPanel.add(lockCheckBox);
+    firstSubPanel1.setLayout(new FlowLayout(FlowLayout.LEFT));
+    firstSubPanel1.add(lockCheckBox);
 
     hint.setEditable(lockCheckBox.isSelected());
-    firstPanel.add(hintLabel);
-    firstPanel.add(hint);
+    firstSubPanel2.setLayout(new FlowLayout(FlowLayout.LEFT));
+    firstSubPanel2.add(hintLabel);
+    firstSubPanel2.add(hint);
 
     userPassword.setEditable(lockCheckBox.isSelected());
-    firstPanel.add(passwordLabel);
-    firstPanel.add(userPassword);
+    firstSubPanel3.setLayout(new FlowLayout(FlowLayout.LEFT));
+    firstSubPanel3.add(passwordLabel);
+    firstSubPanel3.add(userPassword);
 
     //Second Panel Content
     JLabel label = new JLabel("Coming soon!");
     secondPanel.add(label);
 
+    firstPanel.setLayout(new BoxLayout(firstPanel,BoxLayout.Y_AXIS));
+    firstPanel.add(firstSubPanel1);
+    firstPanel.add(firstSubPanel2);
+    firstPanel.add(firstSubPanel3);
+    firstPanel.add(Box.createVerticalStrut(100));
     tabs.add("Privacy",firstPanel);
     tabs.add("More",secondPanel);
 
