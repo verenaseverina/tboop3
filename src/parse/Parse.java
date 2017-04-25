@@ -154,7 +154,7 @@ public class Parse {
       tab.setAttributeNode(idTabungan);
       
       Element jumlahTab = recordDoc.createElement("jumlah");
-      jumlahTab.appendChild(recordDoc.createTextNode(Long.toString(tabungan)));
+      jumlahTab.appendChild(recordDoc.createTextNode(String.valueOf(tabungan)));
       tab.appendChild(jumlahTab);
 
       for (Record recIn : in) {
