@@ -38,8 +38,8 @@ public class SettingController {
       settingV.getPasswordField().setEditable(true);
       settingV.getHint().setText(med.getSignInDesc());
       settingV.getPasswordField().setText(med.getSignInPass());
-      settingV.getSavings().setText(Long.toString(med.getSavings()));
     }
+    settingV.getSavings().setText(Long.toString(med.getSavings()));
     settingV.addListener(new CheckListener());
   }
 
@@ -59,8 +59,20 @@ public class SettingController {
           med.saveSavings(0);
         else
           med.saveSavings(Integer.parseInt(settingV.getSavings().getText()));
+        settingV.getDeleteLabel().setVisible(false);
+        settingV.getSuccessLabel().setVisible(false);
         settingV.dispose();
       } else if (event.getSource() == settingV.getCancelButton()) {
+        settingV.getCheckBoxLock().setSelected(med.getSignInID().equals("1"));
+        if(settingV.getCheckBoxLock().isSelected()) {
+          settingV.getHint().setEditable(true);
+          settingV.getPasswordField().setEditable(true);
+          settingV.getHint().setText(med.getSignInDesc());
+          settingV.getPasswordField().setText(med.getSignInPass());
+        }
+        settingV.getSavings().setText(Long.toString(med.getSavings()));
+        settingV.getDeleteLabel().setVisible(false);
+        settingV.getSuccessLabel().setVisible(false);
         settingV.dispose();
       } else if (event.getSource() == settingV.getCheckBoxLock()) {
         settingV.getPasswordField().setEditable(settingV.getCheckBoxLock().isSelected());

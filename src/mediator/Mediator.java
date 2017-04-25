@@ -81,14 +81,26 @@ public class Mediator {
     signInControl.changePassword(id,pass,desc);
   }
 
+  /**
+   * Prosedur untuk menampilkan atau menyembunyikan tampilan setting
+   * @param state kondisi untuk menampilkan atau menyembunyikan
+   */
   public void setSettingVisible(boolean state) {
     settingControl.visible(state);
   }
 
+  /**
+   * Prosedur untuk menampilkan atau menyembunyikan tampilan sign in
+   * @param state kondisi untuk menampilkan atau menyembunyikan
+   */
   public void setSignInVisible(boolean state){
     signInControl.visible(state);
   }
 
+  /**
+   * Prosedur untuk menampilkan atau menyembunyikan tampilan financial record
+   * @param state kondisi untuk menampilkan atau menyembunyikan
+   */
   public void setFrControlVisible(boolean state){
     frControl.visible(state);
   }
