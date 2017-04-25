@@ -2,6 +2,7 @@ package financialrecords;
 
 import financialrecords.records.Record;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -11,13 +12,127 @@ public final class FinancialRecordView extends JFrame {
   private int width = 750;
   private int height = 500;
   private JTable finaltable;
-  private JButton addIncomeButton = new JButton(" Add Income ");
-  private JButton addExpenseButton = new JButton("Add Expense");
+  private JButton addIncButton = new JButton(" Add Income ");
+  private JButton addExpButton = new JButton("Add Expense");
+  private JTextField amountTextField = new JTextField();
+  private String selection;
+  private JTextField descriptionTextField = new JTextField();
   private JButton addUpdateButton = new JButton("Update Record");
   private JButton addDeleteButton = new JButton("Delete Record");
   private JButton thisWeek = new JButton("This Week");
   private JButton thisMonth = new JButton("This Month");
   private JButton thisYear = new JButton("This Year");
+
+  private void addIncomeFrame() {
+    JFrame frame = new JFrame();
+    frame.setVisible(true);
+    frame.setSize(400,300);
+    frame.setLocationRelativeTo(null);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    JPanel panel = new JPanel();
+    panel.setSize(400,300);
+    panel.setBackground(Color.white);
+    panel.setVisible(true);
+    panel.setLayout(new GridLayout(0,1));
+
+    JLabel dateLabel = new JLabel("Date : ");
+    panel.add(dateLabel);
+
+    // datenya mau gimana inputnya biar bagus formatnya?
+
+    JLabel amountLabel = new JLabel("Amount : ");
+    panel.add(amountLabel);
+
+    panel.add(amountTextField);
+
+    JLabel categoryLabel = new JLabel("Category : ");
+    panel.add(categoryLabel);
+
+    String[] ctgryOpt = {
+            "Salary",
+            "Bonus",
+            "Reward",
+            "Allowance"
+    };
+
+    JComboBox categoryList = new JComboBox(ctgryOpt);
+    categoryList.setEditable(false);
+    categoryList.addActionListener(
+            new ActionListener() {
+              public void actionPerformed(ActionEvent e) {
+                JComboBox cb = (JComboBox)e.getSource();
+                selection = (String)cb.getSelectedItem();
+              }
+            }
+    );
+
+    JLabel descriptionLabel = new JLabel("Description : ");
+    panel.add(descriptionLabel);
+
+    panel.add(descriptionTextField);
+
+    addIncButton.setBackground(Color.white);
+    addIncButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    panel.add(addIncButton);
+  }
+
+  private void addExpenseFrame() {
+    JFrame frame = new JFrame();
+    frame.setVisible(true);
+    frame.setSize(400,300);
+    frame.setLocationRelativeTo(null);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    JPanel panel = new JPanel();
+    panel.setSize(400,300);
+    panel.setBackground(Color.white);
+    panel.setVisible(true);
+    panel.setLayout(new GridLayout(0,1));
+
+    JLabel dateLabel = new JLabel("Date : ");
+    panel.add(dateLabel);
+
+    // datenya mau gimana inputnya biar bagus formatnya?
+
+    JLabel amountLabel = new JLabel("Amount : ");
+    panel.add(amountLabel);
+
+    panel.add(amountTextField);
+
+    JLabel categoryLabel = new JLabel("Category : ");
+    panel.add(categoryLabel);
+
+    String[] ctgryOpt = {
+            "Food",
+            "Entertainment",
+            "Utility",
+            "Personal Care",
+            "Transportation",
+            "Tax"
+    };
+
+    JComboBox categoryList = new JComboBox(ctgryOpt);
+    categoryList.setEditable(false);
+    categoryList.addActionListener(
+            new ActionListener() {
+              public void actionPerformed(ActionEvent e) {
+                JComboBox cb = (JComboBox)e.getSource();
+                selection = (String)cb.getSelectedItem();
+              }
+            }
+    );
+
+    JLabel descriptionLabel = new JLabel("Description : ");
+    panel.add(descriptionLabel);
+
+    panel.add(descriptionTextField);
+
+    addExpButton.setBackground(Color.white);
+    addExpButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    panel.add(addExpButton);
+  }
+
 
   public FinancialRecordView(final FinancialRecordModel frmodel) {
     this.setVisible(true);
@@ -32,13 +147,31 @@ public final class FinancialRecordView extends JFrame {
     controls.setVisible(true);
     controls.setLayout(new GridLayout(0,1));
 
+    JButton addIncomeButton = new JButton(" Add Income ");
     addIncomeButton.setBackground(Color.white);
     addIncomeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     controls.add(addIncomeButton);
 
+    addIncomeButton.addActionListener(
+            new ActionListener() {
+              public void actionPerformed(ActionEvent e) {
+                addIncomeFrame();
+              }
+            }
+    );
+
+    JButton addExpenseButton = new JButton("Add Expense");
     addExpenseButton.setBackground(Color.white);
     addExpenseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     controls.add(addExpenseButton);
+
+    addExpenseButton.addActionListener(
+            new ActionListener() {
+              public void actionPerformed(ActionEvent e) {
+                addExpenseFrame();
+              }
+            }
+    );
 
     addUpdateButton.setBackground(Color.white);
     addUpdateButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -114,33 +247,47 @@ public final class FinancialRecordView extends JFrame {
     
     finaltable = new JTable();
     finaltable.setModel(tabModel);
+
   }
 
-  void addIncomeButtonListener(ActionListener listenForAddIncomeButton) {
-    addIncomeButton.addActionListener(listenForAddIncomeButton);
+  public long getAmountTextField() {
+    return Long.parseLong(amountTextField.getText());
   }
 
-  void addExpenseButtonListener(ActionListener listenForAddExpenseButton) {
-    addExpenseButton.addActionListener(listenForAddExpenseButton);
+  public String getDescriptionTextField() {
+    return descriptionTextField.getText();
   }
 
-  void addUpdateButtonListener(ActionListener listenForAddUpdateButton) {
+  public String getSelection() {
+    return selection;
+  }
+
+  public void addIncButtonListener(ActionListener listenForAddIncomeButton) {
+    addIncButton.addActionListener(listenForAddIncomeButton);
+  }
+
+  public void addExpButtonListener(ActionListener listenForAddExpenseButton) {
+    addExpButton.addActionListener(listenForAddExpenseButton);
+  }
+
+  public void addUpdateButtonListener(ActionListener listenForAddUpdateButton) {
     addUpdateButton.addActionListener(listenForAddUpdateButton);
   }
 
-  void addDeleteButtonListener(ActionListener listenForAddDeleteButton) {
+  public void addDeleteButtonListener(ActionListener listenForAddDeleteButton) {
     addDeleteButton.addActionListener(listenForAddDeleteButton);
   }
 
-  void addThisWeekListener(ActionListener listenForAddThisWeekButton) {
+  public void addThisWeekListener(ActionListener listenForAddThisWeekButton) {
     thisWeek.addActionListener(listenForAddThisWeekButton);
   }
 
-  void addThisMonthListener(ActionListener listenForAddThisMonthButton) {
+  public void addThisMonthListener(ActionListener listenForAddThisMonthButton) {
     thisMonth.addActionListener(listenForAddThisMonthButton);
   }
 
-  void addThisYearListener(ActionListener listenForAddThisYearButton) {
+  public void addThisYearListener(ActionListener listenForAddThisYearButton) {
     thisYear.addActionListener(listenForAddThisYearButton);
   }
+
 }
