@@ -9,7 +9,12 @@ import parse.Parse;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Kelas controller untuk financial records.
@@ -45,7 +50,6 @@ public class FinancialRecordController {
     this.frview.addThisWeekListener(new thisWeekListener());
     this.frview.addThisMonthListener(new thisMonthListener());
     this.frview.addThisYearListener(new thisYearListener());
-
   }
 
     class addIncomeListener implements ActionListener {
@@ -228,8 +232,24 @@ public class FinancialRecordController {
    * Menghitung rekomendasi pengeluaran.
    * @return rekomendasi pengeluaran
    */
-  public long countRecommendedExpense() {
-    return 0;
+  public double countRecommendedExpense() {
+    Date date = new Date();
+    LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    int month = localDate.getMonthValue();
+    int year = localDate.getYear();
+    Calendar cal = new GregorianCalendar(year,month-1,1);
+    int numberOfDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+    double incomeInMonth = 0;
+
+    for (int idx = 0; idx<frmodel.getIncome().size();idx++){
+      int inMonth = Integer.parseInt(frmodel.getIncome().get(idx).getDate().getMonth());
+      int inYear = Integer.parseInt(frmodel.getIncome().get(idx).getDate().getYear());
+      if(inMonth == month && inYear == year){
+        incomeInMonth += (double) frmodel.getIncome().get(idx).getAmount();
+      }
+    }
+    incomeInMonth = (incomeInMonth-frmodel.getSavings())/numberOfDay;
+    return (incomeInMonth >= 0 ? incomeInMonth : 0);
   }
 
   /**

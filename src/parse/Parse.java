@@ -101,8 +101,7 @@ public class Parse {
           String tanggal = elRecord.getElementsByTagName("tanggal").item(0).getTextContent();
           String jumlah = elRecord.getElementsByTagName("jumlah").item(0).getTextContent();
           String deskripsi = elRecord.getElementsByTagName("deskripsi").item(0).getTextContent();
-          String kategori = elRecord.getElementsByTagName("kategori").item(0).getTextContent();
-          Income pemasukkan = new Income(tanggal, jumlah, deskripsi, kategori);
+          Income pemasukkan = new Income(tanggal, jumlah, deskripsi);
           in.add(pemasukkan);
         }
         if (isiRecordOut.getNodeType() == Node.ELEMENT_NODE) {
@@ -110,7 +109,8 @@ public class Parse {
           String tanggal = elRecord.getElementsByTagName("tanggal").item(0).getTextContent();
           String jumlah = elRecord.getElementsByTagName("jumlah").item(0).getTextContent();
           String deskripsi = elRecord.getElementsByTagName("deskripsi").item(0).getTextContent();
-          Expense pengeluaran = new Expense(tanggal, jumlah, deskripsi);
+          String kategori = elRecord.getElementsByTagName("kategori").item(0).getTextContent();
+          Expense pengeluaran = new Expense(tanggal, jumlah, deskripsi, kategori);
           out.add(pengeluaran);
         }
       }      
@@ -176,10 +176,6 @@ public class Parse {
         Element deskripsi = recordDoc.createElement("deskripsi");
         deskripsi.appendChild(recordDoc.createTextNode(recIn.getDescription()));
         recordin.appendChild(deskripsi);
-
-        Element kategori = recordDoc.createElement("kategori");
-        kategori.appendChild(recordDoc.createTextNode(recIn.getCategory()));
-        recordin.appendChild(kategori);
       }
       
       for (Record recOut : out) {
@@ -201,6 +197,10 @@ public class Parse {
         Element deskripsi = recordDoc.createElement("deskripsi");
         deskripsi.appendChild(recordDoc.createTextNode(recOut.getDescription()));
         recordout.appendChild(deskripsi);
+
+        Element kategori = recordDoc.createElement("kategori");
+        kategori.appendChild(recordDoc.createTextNode(recOut.getCategory()));
+        recordout.appendChild(kategori);
       }
       
       TransformerFactory transformerFactory = TransformerFactory.newInstance();

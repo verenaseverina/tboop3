@@ -5,17 +5,17 @@
 		<deskripsi>nama saya</deskripsi>
 	</lock>
 	<tabungan id="1">
-		<jumlah>1000000</jumlah>
+		<jumlah>300000</jumlah>
 	</tabungan>
 	<recordin id="1">
-		<tanggal>13/02/2017</tanggal>
-		<jumlah>2000</jumlah>
-		<deskripsi>blablabla</deskripsi>
-		<kategori>Makanan</kategori>
+		<tanggal>04/04/2017</tanggal>
+		<jumlah>3000000</jumlah>
+		<deskripsi>balbalbla</deskripsi>
 	</recordin>
 	<recordout id="1">
-		<tanggal>14/02/2017</tanggal>
-		<jumlah>1000</jumlah>
-		<deskripsi>balbalbla</deskripsi>
+		<tanggal>13/04/2017</tanggal>
+		<jumlah>3000</jumlah>
+		<deskripsi>blablabla</deskripsi>
+		<kategori>Makanan</kategori>
 	</recordout>
 </buku>
