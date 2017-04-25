@@ -16,6 +16,8 @@ public class SettingView extends JDialog{
   private JTabbedPane tabs = new JTabbedPane();
   private JButton acceptButton = new JButton("OK");
   private JButton cancelButton = new JButton("Cancel");
+  private JButton resetButton = new JButton("Reset All");
+  private JLabel successLabel = new JLabel("Data has been reset successfully");
 
   public SettingView(){
     this.setLocationRelativeTo(null);
@@ -50,8 +52,10 @@ public class SettingView extends JDialog{
     firstSubPanel3.add(userPassword);
 
     //Second Panel Content
-    JLabel label = new JLabel("Coming soon!");
-    secondPanel.add(label);
+    successLabel.setVisible(false);
+    secondPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+    secondPanel.add(resetButton);
+    secondPanel.add(successLabel);
 
     firstPanel.setLayout(new BoxLayout(firstPanel,BoxLayout.Y_AXIS));
     firstPanel.add(firstSubPanel1);
@@ -59,7 +63,7 @@ public class SettingView extends JDialog{
     firstPanel.add(firstSubPanel3);
     firstPanel.add(Box.createVerticalStrut(100));
     tabs.add("Privacy",firstPanel);
-    tabs.add("More",secondPanel);
+    tabs.add("Data",secondPanel);
 
     this.add(tabs,BorderLayout.CENTER);
     this.add(globalPanel,BorderLayout.SOUTH);
@@ -69,14 +73,19 @@ public class SettingView extends JDialog{
     lockCheckBox.addActionListener(listenToEvent);
     acceptButton.addActionListener(listenToEvent);
     cancelButton.addActionListener(listenToEvent);
+    resetButton.addActionListener(listenToEvent);
   }
 
-  JButton getButtonOK() {
+  JButton getOKButton() {
     return acceptButton;
   }
 
-  JButton getButtonCancel() {
+  JButton getCancelButton() {
     return cancelButton;
+  }
+
+  JButton getResetButton() {
+    return resetButton;
   }
 
   JCheckBox getCheckBoxLock() {
@@ -89,5 +98,9 @@ public class SettingView extends JDialog{
 
   JTextField getHint(){
     return hint;
+  }
+
+  JLabel getSuccessLabel(){
+    return successLabel;
   }
 }
