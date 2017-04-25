@@ -28,8 +28,8 @@ public class FinancialRecordController {
     this.frmodel = frmodel;
     this.frview = frview;
 
-    this.frview.addIncomeButtonListener(new addIncomeListener());
-    this.frview.addExpenseButtonListener(new addExpenseListener());
+    this.frview.addIncButtonListener(new addIncomeListener());
+    this.frview.addExpButtonListener(new addExpenseListener());
     this.frview.addUpdateButtonListener(new addUpdateListener());
     this.frview.addDeleteButtonListener(new addDeleteListener());
     this.frview.addThisWeekListener(new thisWeekListener());
@@ -38,8 +38,7 @@ public class FinancialRecordController {
 
   }
 
-  class addIncomeListener implements ActionListener {
-
+    class addIncomeListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
     }
