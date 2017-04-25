@@ -1,9 +1,7 @@
 package setting;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.TransducedAccessor_method_Double;
 import mediator.Mediator;
 
-import javax.print.attribute.standard.Media;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -53,11 +51,11 @@ public class SettingController {
 
   class CheckListener implements ActionListener {
     public void actionPerformed(ActionEvent event) {
-      if(event.getSource() == settingV.getButtonOK()){
+      if(event.getSource() == settingV.getOKButton()){
         int lockState = settingV.getCheckBoxLock().isSelected() ? 1 : 0;
         med.saveSignInState(Integer.toString(lockState),settingV.getPasswordField().getText(),settingV.getHint().getText());
         settingV.dispose();
-      } else if (event.getSource() == settingV.getButtonCancel()) {
+      } else if (event.getSource() == settingV.getCancelButton()) {
         settingV.dispose();
       } else if (event.getSource() == settingV.getCheckBoxLock()) {
         settingV.getPasswordField().setEditable(settingV.getCheckBoxLock().isSelected());
@@ -69,6 +67,13 @@ public class SettingController {
           settingV.getPasswordField().setText(med.getSignInPass());
           settingV.getHint().setText(med.getSignInDesc());
         }
+      } else if(event.getSource() == settingV.getResetButton()) {
+        settingV.getSuccessLabel().setVisible(true);
+        settingV.getCheckBoxLock().setSelected(false);
+        settingV.getPasswordField().setEditable(settingV.getCheckBoxLock().isSelected());
+        settingV.getHint().setEditable(settingV.getCheckBoxLock().isSelected());
+        settingV.getHint().setText("");
+        settingV.getPasswordField().setText("");
       }
     }
   }
