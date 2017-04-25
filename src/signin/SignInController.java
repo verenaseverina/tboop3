@@ -28,6 +28,14 @@ public class SignInController {
   private SignInView signInV;
 
   /**
+   * Ctor dari SignInController tanpa parameter.
+   */
+  public SignInController() {
+    signInM = new SignInModel();
+    signInV = new SignInView();
+  }
+
+  /**
    * Ctor dari SignInController.
    * @param _med mediator antar controller
    */
