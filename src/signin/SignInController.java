@@ -1,5 +1,8 @@
 package signin;
 
+import mediator.Mediator;
+import parse.Parse;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,6 +15,10 @@ import java.awt.event.ActionListener;
  */
 public class SignInController {
   /**
+   * Atribut mediator
+   */
+  private Mediator med;
+  /**
    * Atribut signin.SignInModel.
    */
   private SignInModel signInM;
@@ -22,13 +29,12 @@ public class SignInController {
 
   /**
    * Ctor dari SignInController.
-   * @param theView adalah SignInView yang akan di-assign
-   * @param theModel adalah SignInModel yang akan di-assign
+   * @param _med mediator antar controller
    */
-  public SignInController(SignInView theView, SignInModel theModel) {
-    signInM = theModel;
-    signInV = theView;
-
+  public SignInController(Mediator _med, Parse parser) {
+    signInM = new SignInModel(parser);
+    signInV = new SignInView();
+    med = _med;
     this.signInV.addCheckListener(new CheckListener());
   }
 
@@ -52,5 +58,23 @@ public class SignInController {
    */
   public boolean validatePassword(String pass) {
     return (pass.compareTo(signInM.getPass()) == 0);
+  }
+
+  /**
+   * Menampilkan atau menyembunyikan tampilan SignInView
+   */
+  public void visible(boolean state){
+    signInV.setVisible(state);
+  }
+
+  /**
+   * Prosedur untuk mengganti password.
+   * @param id adalah String yang menunjukkan apakah program punya password atau tidak
+   * @param pass adalah String kata kunci untuk mengunci program
+   * @param desc adalah String yang menggambarkan kata kunci
+   */
+  public void changePassword(String id, String pass, String desc){
+    signInM.changePassword(id,pass,desc);
+    signInM.saveState();
   }
 }

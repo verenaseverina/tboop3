@@ -2,6 +2,8 @@ package signin;
 
 import parse.Parse;
 
+import javax.xml.transform.TransformerException;
+
 /**
  *
  * Kelas model untuk sign in.
@@ -25,7 +27,10 @@ public class SignInModel {
    * Atribut String yang mendeskripsikan katakunci.
    */
   private String description;
-
+  /**
+   * Atribut parse untuk mengupdate data
+   */
+  private Parse parser;
   /**
    * Menginisialisasi atribut dari SignInModel.
    */
@@ -40,6 +45,7 @@ public class SignInModel {
    * @param parser adalah parsing yang mengambil data dari file eksternal
    */
   public SignInModel(Parse parser) {
+    this.parser = parser;
     id = parser.getPassword()[0];
     pass = parser.getPassword()[1];
     description = parser.getPassword()[2];
@@ -112,4 +118,21 @@ public class SignInModel {
     setPass(pass);
     setDescription(desc);
   }
+
+  /**
+   * Method untuk update data global
+   */
+  public void saveState(){
+    String[] pass = new String[3];
+    pass[0] = id;
+    pass[1] = this.pass;
+    pass[2] = description;
+    parser.setPassword(pass);
+    try {
+      parser.saveFile();
+    } catch (TransformerException e) {
+      e.printStackTrace();
+    }
+  }
+
 }

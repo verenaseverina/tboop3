@@ -1,4 +1,7 @@
 import gui.Welcome;
+import mediator.Mediator;
+import setting.SettingController;
+import setting.SettingView;
 import signin.MvcSignIn;
 
 /**
@@ -6,8 +9,6 @@ import signin.MvcSignIn;
  */
 public class Main {
   public static void main(String args[]) {
-    Welcome welc = new Welcome();
-    MvcSignIn signin = new MvcSignIn();
-
+    Mediator med = new Mediator();
   }
 }
