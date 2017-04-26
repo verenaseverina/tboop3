@@ -56,8 +56,9 @@ public class Parse {
   
   /**
    * Melakukan parsing untuk dipakai pada kelas lain.
+   * @throws parse.ParseExc
    */
-  public Parse() {
+  public Parse() throws ParseExc{
     try {
       in = new ArrayList<>();
       out = new ArrayList<>();
