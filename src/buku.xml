@@ -11,6 +11,7 @@
 		<tanggal>04/04/2017</tanggal>
 		<jumlah>3000000</jumlah>
 		<deskripsi>balbalbla</deskripsi>
+                <kategori>Makanan</kategori>
 	</recordin>
 	<recordout id="1">
 		<tanggal>13/04/2017</tanggal>
