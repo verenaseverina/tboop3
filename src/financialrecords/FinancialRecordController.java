@@ -49,9 +49,6 @@ public class FinancialRecordController {
     this.frview.addExpButtonListener(new addExpenseListener());
     this.frview.addUpdateButtonListener(new addUpdateListener());
     this.frview.addDeleteButtonListener(new addDeleteListener());
-    this.frview.addThisWeekListener(new thisWeekListener());
-    this.frview.addThisMonthListener(new thisMonthListener());
-    this.frview.addThisYearListener(new thisYearListener());
   }
 
     class addIncomeListener implements ActionListener {
@@ -61,12 +58,30 @@ public class FinancialRecordController {
       if(frview.getDate().equals(""))
         return;
       Income tmp = new Income(frview.getDate(),frview.getAmountTextField(),frview.getDescriptionTextField(),frview.getSelection());
-      addIncome(tmp);
-      frmodel.saveData();
-      DefaultTableModel model = (DefaultTableModel) frview.getFinaltable().getModel();
-      model.addRow(new Object[]{"Income",frview.getDate(), tmp.getAmount(), tmp.getDescription(),tmp.getCategory()});
-      incomeFrame.dispose();
-      frview.resetField();
+      Runnable task1 = new Runnable() {
+        public void run() {
+          addIncome(tmp);
+          frmodel.saveData();
+          DefaultTableModel model = (DefaultTableModel) frview.getFinaltable().getModel();
+          model.addRow(new Object[]{"Income",frview.getDate(), tmp.getAmount(), tmp.getDescription(),tmp.getCategory()});
+          incomeFrame.dispose();
+          frview.resetField();
+        }
+      };
+
+      Runnable task2 = new Runnable() {
+        @Override
+        public void run() {
+          frmodel.setBalance(frmodel.getBalance() + tmp.getAmount());
+        }
+      };
+
+      Thread thread1 = new Thread(task1);
+      Thread thread2 = new Thread(task2);
+
+      thread1.start();
+      thread2.start();
+
     }
   }
 
@@ -78,12 +93,31 @@ public class FinancialRecordController {
       if(frview.getDate().equals(""))
         return;
       Expense tmp = new Expense(frview.getDate(),frview.getAmountTextField(),frview.getDescriptionTextField(),frview.getSelection());
-      addOutcome(tmp);
-      frmodel.saveData();
-      DefaultTableModel model = (DefaultTableModel) frview.getFinaltable().getModel();
-      model.addRow(new Object[]{"Expense",frview.getDate(), tmp.getAmount(), tmp.getDescription(),tmp.getCategory()});
-      incomeFrame.dispose();
-      frview.resetField();
+      Runnable task1 = new Runnable() {
+        @Override
+        public void run() {
+          addOutcome(tmp);
+          frmodel.saveData();
+          DefaultTableModel model = (DefaultTableModel) frview.getFinaltable().getModel();
+          model.addRow(new Object[]{"Expense",frview.getDate(), tmp.getAmount(), tmp.getDescription(),tmp.getCategory()});
+          incomeFrame.dispose();
+          frview.resetField();
+        }
+      };
+
+      Runnable task2 = new Runnable() {
+        @Override
+        public void run() {
+          frmodel.setBalance(frmodel.getBalance() - tmp.getAmount());
+        }
+      };
+
+      Thread thread1 = new Thread(task1);
+      Thread thread2 = new Thread(task2);
+
+      thread1.start();
+      thread2.start();
+
     }
   }
 
@@ -134,27 +168,6 @@ public class FinancialRecordController {
           }
         model.removeRow(frview.getFinaltable().getSelectedRow());
       }
-    }
-  }
-
-  class thisWeekListener implements ActionListener {
-
-    public void actionPerformed(ActionEvent e) {
-
-    }
-  }
-
-  class thisMonthListener implements ActionListener {
-
-    public void actionPerformed(ActionEvent e) {
-
-    }
-  }
-
-  class thisYearListener implements ActionListener {
-
-    public void actionPerformed(ActionEvent e) {
-
     }
   }
 
