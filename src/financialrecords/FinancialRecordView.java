@@ -99,7 +99,7 @@ public final class FinancialRecordView extends JFrame {
    */
   private DefaultTableModel tabModel;
   /**
-   * Atribut String tanggal.
+   * Atribut String untuk sort dan filter.
    */
   private String tanggal = "(.*)";
 
@@ -500,6 +500,9 @@ public final class FinancialRecordView extends JFrame {
     addDeleteButton.addActionListener(listenForAddDeleteButton);
   }
   
+  /**
+   * Prosedur untuk sort dan filter tabel.
+   */
   public void sortTable() {
     TableRowSorter<TableModel> sorter = new TableRowSorter<>(finaltable.getModel());
     finaltable.setRowSorter(sorter);
@@ -510,6 +513,10 @@ public final class FinancialRecordView extends JFrame {
     filterTable(sorter);
   }
   
+  /**
+   * Prosedur untuk filter tabel.
+   * @param sorter ArrayList isi tabel
+   */
   public void filterTable(TableRowSorter<TableModel> sorter) {
     RowFilter<TableModel, Object> rf = null;
     //If current expression doesn't parse, don't update.
