@@ -54,13 +54,6 @@ public class Parse {
    */
   private String[] password;
   
-  public static void main(String[] args) throws TransformerException {
-    NewDate y = new NewDate("23/24/2525");
-    System.out.print(y.getDay());
-    Parse x = new Parse();
-    x.saveFile();
-  }
-  
   /**
    * Melakukan parsing untuk dipakai pada kelas lain.
    */
@@ -238,7 +231,11 @@ public class Parse {
   public String[] getPassword(){
     return password;
   }
-  
+
+  /**
+   * Getter tabungan.
+   * @return tabungan
+   */
   public long getTabungan() {
     return tabungan;
   }
@@ -280,7 +277,11 @@ public class Parse {
     password[1] = pass[1];
     password[2] = pass[2];
   }
-  
+
+  /**
+   * Setter tabungan.
+   * @param tab adalah long yang akan diassign tabungan
+   */
   public void setTabungan(long tab) {
     tabungan = tab;
   }
