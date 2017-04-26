@@ -74,22 +74,23 @@ public class Parse {
       NodeList recordListOut = docRecord.getElementsByTagName("recordout");
       NodeList lock = docRecord.getElementsByTagName("lock");
       NodeList tab = docRecord.getElementsByTagName("tabungan");
+      
+      Node isiLock = lock.item(0);
+      Node isiTabungan = tab.item(0);
+      if (isiLock.getNodeType() == Node.ELEMENT_NODE) {
+        Element elRecord = (Element) isiLock;
+        password[0] = elRecord.getAttribute("id");
+        password[1] = elRecord.getElementsByTagName("password").item(0).getTextContent();
+        password[2] = elRecord.getElementsByTagName("deskripsi").item(0).getTextContent();
+      }
+      if (isiTabungan.getNodeType() == Node.ELEMENT_NODE) {
+        Element elRecord = (Element) isiTabungan;
+        String jmlt = elRecord.getElementsByTagName("jumlah").item(0).getTextContent();
+        tabungan = Long.parseLong(jmlt);
+      }
+      
       for (int idx = 0; idx < recordListIn.getLength(); idx++) {
-        Node isiLock = lock.item(idx);
         Node isiRecordIn = recordListIn.item(idx);
-        Node isiRecordOut = recordListOut.item(idx);
-        Node isiTabungan = tab.item(idx);
-        if (isiLock.getNodeType() == Node.ELEMENT_NODE) {
-          Element elRecord = (Element) isiLock;
-          password[0] = elRecord.getAttribute("id");
-          password[1] = elRecord.getElementsByTagName("password").item(0).getTextContent();
-          password[2] = elRecord.getElementsByTagName("deskripsi").item(0).getTextContent();
-        }
-        if (isiTabungan.getNodeType() == Node.ELEMENT_NODE) {
-          Element elRecord = (Element) isiTabungan;
-          String jmlt = elRecord.getElementsByTagName("jumlah").item(0).getTextContent();
-          tabungan = Long.parseLong(jmlt);
-        }
         if (isiRecordIn.getNodeType() == Node.ELEMENT_NODE) {
           Element elRecord = (Element) isiRecordIn;
           String tanggal = elRecord.getElementsByTagName("tanggal").item(0).getTextContent();
@@ -99,6 +100,7 @@ public class Parse {
           Income pemasukkan = new Income(tanggal, jumlah, deskripsi, kategori);
           in.add(pemasukkan);
         }
+        Node isiRecordOut = recordListOut.item(idx);
         if (isiRecordOut.getNodeType() == Node.ELEMENT_NODE) {
           Element elRecord = (Element) isiRecordOut;
           String tanggal = elRecord.getElementsByTagName("tanggal").item(0).getTextContent();
@@ -109,6 +111,19 @@ public class Parse {
           out.add(pengeluaran);
         }
       }      
+      
+      for (int idx = 0; idx < recordListOut.getLength(); idx++) {
+        Node isiRecordOut = recordListOut.item(idx);
+        if (isiRecordOut.getNodeType() == Node.ELEMENT_NODE) {
+          Element elRecord = (Element) isiRecordOut;
+          String tanggal = elRecord.getElementsByTagName("tanggal").item(0).getTextContent();
+          String jumlah = elRecord.getElementsByTagName("jumlah").item(0).getTextContent();
+          String deskripsi = elRecord.getElementsByTagName("deskripsi").item(0).getTextContent();
+          String kategori = elRecord.getElementsByTagName("kategori").item(0).getTextContent();
+          Expense pengeluaran = new Expense(tanggal, jumlah, deskripsi, kategori);
+          out.add(pengeluaran);
+        }
+      }   
     } catch (ParserConfigurationException | SAXException | IOException | DOMException e) {
     }
   }
