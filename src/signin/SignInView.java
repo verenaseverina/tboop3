@@ -1,26 +1,53 @@
 package signin;
 
-
-import financialrecords.FinancialRecordView;
-import gui.Welcome;
-
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-/**
- * Created by KUKUH BASUKI RAHMAT on 22-Apr-17.
- */
+import javax.swing.*;
 
+/**
+ * Kelas view untuk signin.
+ * Kelas ini memiliki atribut integer untuk width dari frame,
+ * integer untuk height dari frame, JLabel untuk pesan masukan password,
+ * JPasswordField untuk menerima masukan password, JButton untuk menyetujui pengecekan,
+ * JLabel untuk memberikan deskripsi
+ *
+ * @author Verena Severina
+ * @author Kukuh B R
+ * @author Winarto
+ */
 public class SignInView extends JFrame {
+  /**
+   * Integer untuk width dari frame.
+   */
   private int width = 200;
+  /**
+   * Integer untuk height dari frame.
+   */
   private int height = 150;
+  /**
+   * JLabel untuk pesan masukan password.
+   */
   private JLabel passwtxt = new JLabel("Password : ");
+  /**
+   * JPasswordField untuk menerima masukan password.
+   */
   private JPasswordField inputPassword = new JPasswordField();
+  /**
+   * JButton untuk menyetujui pengecekan.
+   */
   private JButton check = new JButton("OK");
+  /**
+   * StringBuffer untuk masukan hint.
+   */
   private StringBuffer txt = new StringBuffer("");
+  /**
+   * JLabel untuk memberikan deskripsi.
+   */
   private JLabel hint = new JLabel(txt.toString());
 
+  /**
+   * Constructor SignInView.
+   */
   public SignInView() {
     this.setVisible(true);
     this.setLocationRelativeTo(null);
@@ -47,23 +74,41 @@ public class SignInView extends JFrame {
     this.add(panel);
   }
 
+  /**
+   * Menambahkan listener untuk komponen.
+   * @param listenForCheckButton parameter untuk cek apakah terdapat Event
+   */
   void addCheckListener(ActionListener listenForCheckButton) {
     check.addActionListener(listenForCheckButton);
   }
 
+  /**
+   * Prosedur untuk menampilkan pesan kesalahan.
+   */
   public void showAlert() {
     JFrame alertFr = new JFrame();
     JOptionPane.showMessageDialog(alertFr, "Wrong Password", "Error", JOptionPane.ERROR_MESSAGE);
   }
 
+  /**
+   * Method untuk menutup Frame.
+   */
   public void closeWindow() {
     this.dispose();
   }
 
+  /**
+   * Getter inputPassword.
+   * @return inputPassword
+   */
   public String getInputPassword() {
     return inputPassword.getText();
   }
 
+  /**
+   * Setter hint.
+   * @param text adalah hint yang akan dimunculkan
+   */
   public void setTxt(String text) {
     txt.replace(0,txt.length()-1, text);
   }
