@@ -7,12 +7,27 @@
   <tabungan id="1">
     <jumlah>300000</jumlah>
   </tabungan>
-  <recordin id="1801197151">
+  <recordin id="1324489498">
+    <tanggal>26/04/2017</tanggal>
+    <jumlah>100000</jumlah>
+    <deskripsi/>
+  </recordin>
+  <recordin id="1190392908">
     <tanggal>04/04/2017</tanggal>
     <jumlah>3000000</jumlah>
     <deskripsi>balbalbla</deskripsi>
   </recordin>
-  <recordout id="23510611">
+  <recordin id="1324489498">
+    <tanggal>26/04/2017</tanggal>
+    <jumlah>100000</jumlah>
+    <deskripsi/>
+  </recordin>
+  <recordin id="796612036">
+    <tanggal>26/04/2017</tanggal>
+    <jumlah>100000</jumlah>
+    <deskripsi>abc</deskripsi>
+  </recordin>
+  <recordout id="876283190">
     <tanggal>13/04/2017</tanggal>
     <jumlah>3000</jumlah>
     <deskripsi>blablabla</deskripsi>

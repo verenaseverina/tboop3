@@ -1,11 +1,18 @@
 package financialrecords;
 
+import dateformat.DateLabelFormatter;
 import financialrecords.records.Record;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Properties;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.DateFormatter;
 
 public final class FinancialRecordView extends JFrame {
   // bisa tambahin ga dia lagi nampilin apaan
@@ -22,6 +29,7 @@ public final class FinancialRecordView extends JFrame {
   private JButton thisWeek = new JButton("This Week");
   private JButton thisMonth = new JButton("This Month");
   private JButton thisYear = new JButton("This Year");
+  private String date;
 
   private void addIncomeFrame() {
     JFrame frame = new JFrame();
@@ -38,8 +46,21 @@ public final class FinancialRecordView extends JFrame {
 
     JLabel dateLabel = new JLabel("Date : ");
     panel.add(dateLabel);
-
-    // datenya mau gimana inputnya biar bagus formatnya?
+    UtilDateModel model = new UtilDateModel();
+    Properties p = new Properties();
+    p.put("text.today", "Today");
+    p.put("text.month", "Month");
+    p.put("text.year", "Year");
+    JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+    JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+    datePicker.addActionListener(
+        new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            date = datePicker.getJFormattedTextField().getText();
+          }
+        }
+    );
+    panel.add(datePicker);
 
     JLabel amountLabel = new JLabel("Amount : ");
     panel.add(amountLabel);
@@ -66,6 +87,7 @@ public final class FinancialRecordView extends JFrame {
               }
             }
     );
+    panel.add(categoryList);
 
     JLabel descriptionLabel = new JLabel("Description : ");
     panel.add(descriptionLabel);
@@ -75,6 +97,7 @@ public final class FinancialRecordView extends JFrame {
     addIncButton.setBackground(Color.white);
     addIncButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     panel.add(addIncButton);
+    frame.add(panel);
   }
 
   private void addExpenseFrame() {
@@ -92,8 +115,21 @@ public final class FinancialRecordView extends JFrame {
 
     JLabel dateLabel = new JLabel("Date : ");
     panel.add(dateLabel);
-
-    // datenya mau gimana inputnya biar bagus formatnya?
+    UtilDateModel model = new UtilDateModel();
+    Properties p = new Properties();
+    p.put("text.today", "Today");
+    p.put("text.month", "Month");
+    p.put("text.year", "Year");
+    JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+    JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+    panel.add(datePicker);
+    datePicker.addActionListener(
+        new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            date = datePicker.getJFormattedTextField().getText();
+          }
+        }
+    );
 
     JLabel amountLabel = new JLabel("Amount : ");
     panel.add(amountLabel);
@@ -122,6 +158,7 @@ public final class FinancialRecordView extends JFrame {
               }
             }
     );
+    panel.add(categoryList);
 
     JLabel descriptionLabel = new JLabel("Description : ");
     panel.add(descriptionLabel);
@@ -131,6 +168,7 @@ public final class FinancialRecordView extends JFrame {
     addExpButton.setBackground(Color.white);
     addExpButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     panel.add(addExpButton);
+    frame.add(panel);
   }
 
 
@@ -247,11 +285,10 @@ public final class FinancialRecordView extends JFrame {
     
     finaltable = new JTable();
     finaltable.setModel(tabModel);
-
   }
 
-  public long getAmountTextField() {
-    return Long.parseLong(amountTextField.getText());
+  public String getAmountTextField() {
+    return amountTextField.getText();
   }
 
   public String getDescriptionTextField() {
@@ -260,6 +297,10 @@ public final class FinancialRecordView extends JFrame {
 
   public String getSelection() {
     return selection;
+  }
+
+  public String getDate() {
+    return date;
   }
 
   public void addIncButtonListener(ActionListener listenForAddIncomeButton) {

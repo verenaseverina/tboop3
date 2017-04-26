@@ -10,8 +10,8 @@ import signin.MvcSignIn;
 public class Main {
   public static void main(String args[]) {
     Mediator med = new Mediator();
-    med.setFrControlVisible(false);
+    med.setFrControlVisible(true);
     med.setSignInVisible(false);
-    med.setSettingVisible(true);
+    med.setSettingVisible(false);
   }
 }

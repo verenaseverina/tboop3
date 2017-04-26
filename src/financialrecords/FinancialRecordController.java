@@ -54,7 +54,10 @@ public class FinancialRecordController {
 
     class addIncomeListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-
+      Income tmp = new Income(frview.getDate(),frview.getAmountTextField(),frview.getDescriptionTextField(),frview.getSelection());
+      addIncome(tmp);
+      frmodel.saveData();
+      frview.setTableRecord(frmodel);
     }
   }
 
