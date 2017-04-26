@@ -6,22 +6,65 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by KUKUH BASUKI RAHMAT on 23-Apr-17.
+ * Kelas view untuk setting.
+ * Kelas SettingView memiliki atribut JCheckBox untuk menunjukkan apakah program dikunci,
+ * JPasswordField untuk menerima masukan password dari user,
+ * JTextField yang berisi deskripsi dari password,
+ * JTextField yang menunjukkan banyaknya tabungan yang ingin dicapai user,
+ * JTabbedPane untuk membuat tab pilihan,
+ * JButton untuk menerima, JButton untuk membatalkan, JButton untuk menghapus semua data,
+ * JButton untuk mengembalikan setting ke Default, JLabel untuk pesan berhasil,
+ * dan JLabel untuk pesan gagal
  */
 public class SettingView extends JDialog{
-  //First Panel Content
+  /**
+   * JCheckBox untuk menunjukkan apakah program dikunci.
+   */
   private JCheckBox lockCheckBox = new JCheckBox("Use Password");
+  /**
+   * JPasswordField untuk menerima masukan password dari user.
+   */
   private JPasswordField userPassword = new JPasswordField(10);
+  /**
+   * JTextField yang berisi deskripsi dari password.
+   */
   private JTextField hint = new JTextField(10);
+  /**
+   * JTextField yang menunjukkan banyaknya tabungan yang ingin dicapai user.
+   */
   private JTextField savings = new JTextField(10);
+  /**
+   * JTabbedPane untuk membuat tab pilihan.
+   */
   private JTabbedPane tabs = new JTabbedPane();
+  /**
+   * JButton untuk menerima.
+   */
   private JButton acceptButton = new JButton("OK");
+  /**
+   * JButton untuk membatalkan.
+   */
   private JButton cancelButton = new JButton("Cancel");
+  /**
+   * JButton untuk mengembalikan setting ke Default.
+   */
   private JButton resetButton = new JButton("Default");
+  /**
+   * JButton untuk menghapus semua data.
+   */
   private JButton deleteButton = new JButton("Delete Data");
+  /**
+   * JLabel untuk pesan berhasil.
+   */
   private JLabel successLabel = new JLabel("Setting has been set to default");
+  /**
+   * JLabel untuk pesan gagal.
+   */
   private JLabel deleteLabel = new JLabel("Data has been deleted successfully");
 
+  /**
+   * Constructor SettingView.
+   */
   public SettingView(){
     this.setLocationRelativeTo(null);
     this.setSize(450,300);
@@ -91,6 +134,10 @@ public class SettingView extends JDialog{
     this.add(globalPanel,BorderLayout.SOUTH);
   }
 
+  /**
+   * Menambahkan listener untuk komponen.
+   * @param listenToEvent parameter untuk cek apakah terdapat Event
+   */
   void addListener(ActionListener listenToEvent) {
     lockCheckBox.addActionListener(listenToEvent);
     acceptButton.addActionListener(listenToEvent);
@@ -99,42 +146,82 @@ public class SettingView extends JDialog{
     deleteButton.addActionListener(listenToEvent);
   }
 
+  /**
+   * Getter acceptButton.
+   * @return acceptButton
+   */
   JButton getOKButton() {
     return acceptButton;
   }
 
+  /**
+   * Getter cancelButton.
+   * @return cancelButton
+   */
   JButton getCancelButton() {
     return cancelButton;
   }
 
+  /**
+   * Getter resetButton.
+   * @return resetButton
+   */
   JButton getResetButton() {
     return resetButton;
   }
 
+  /**
+   * Getter deleteButton.
+   * @return deleteButton
+   */
   JButton getDeleteButton(){
     return deleteButton;
   }
 
+  /**
+   * Getter CheckBox lockCheckBox.
+   * @return CheckBox lockCheckBox
+   */
   JCheckBox getCheckBoxLock() {
     return lockCheckBox;
   }
 
+  /**
+   * Getter userPassword.
+   * @return userPassword
+   */
   JPasswordField getPasswordField() {
     return userPassword;
   }
 
+  /**
+   * Getter TextField hint.
+   * @return TextField hint
+   */
   JTextField getHint(){
     return hint;
   }
 
+  /**
+   * Getter TextField savings.
+   * @return TextField savings
+   */
   JTextField getSavings(){
     return savings;
   }
 
+  /**
+   * Getter successLabel.
+   * @return successLabel
+   */
   JLabel getSuccessLabel(){
     return successLabel;
   }
 
+  /**
+   * Getter deleteLabel.
+   * @return deleteLabel
+   */
   JLabel getDeleteLabel(){
     return deleteLabel;
   }
