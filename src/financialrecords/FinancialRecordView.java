@@ -10,7 +10,10 @@ import org.jdatepicker.impl.UtilDateModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -318,12 +321,42 @@ public final class FinancialRecordView extends JFrame {
 
     today.setAlignmentX(Component.CENTER_ALIGNMENT);
     controlBar.add(today);
+    today.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String month = Integer.toString(localDate.getMonthValue());
+        String year = Integer.toString(localDate.getYear());
+        String day = Integer.toString(localDate.getDayOfMonth());
+        tanggal = year + "/" + month + "/" + day;
+      }
+    });
 
     thisMonth.setAlignmentX(Component.CENTER_ALIGNMENT);
     controlBar.add(thisMonth);
+    thisMonth.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String month = Integer.toString(localDate.getMonthValue());
+        String year = Integer.toString(localDate.getYear());
+        tanggal = year + "/" + month + "/.*";
+      }
+    });
 
     thisYear.setAlignmentX(Component.CENTER_ALIGNMENT);
     controlBar.add(thisYear);
+    thisYear.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String year = Integer.toString(localDate.getYear());
+        tanggal = year + "/.*";
+      }
+    });
 
     // biar resizable pake JSplitPane
     JSplitPane splitPane1 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, controlBar, table);
