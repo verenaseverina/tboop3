@@ -15,6 +15,9 @@ import java.awt.event.ActionListener;
  * JButton untuk menerima, JButton untuk membatalkan, JButton untuk menghapus semua data,
  * JButton untuk mengembalikan setting ke Default, JLabel untuk pesan berhasil,
  * dan JLabel untuk pesan gagal
+ *
+ * @author Kukuh B R
+ * @author Verena Severina
  */
 public class SettingView extends JDialog{
   /**
