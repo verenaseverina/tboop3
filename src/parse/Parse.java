@@ -70,8 +70,18 @@ public class Parse {
 
       docRecord.getDocumentElement().normalize();
 
-      NodeList recordListIn = docRecord.getElementsByTagName("recordin");
-      NodeList recordListOut = docRecord.getElementsByTagName("recordout");
+      NodeList recordListIn;
+      try {
+        recordListIn = docRecord.getElementsByTagName("recordin");
+      } catch (Exception e){
+        recordListIn = null;
+      }
+      NodeList recordListOut;
+      try {
+        recordListOut = docRecord.getElementsByTagName("recordout");
+      } catch (Exception e){
+        recordListOut = null;
+      }
       NodeList lock = docRecord.getElementsByTagName("lock");
       NodeList tab = docRecord.getElementsByTagName("tabungan");
       
@@ -99,16 +109,6 @@ public class Parse {
           String kategori = elRecord.getElementsByTagName("kategori").item(0).getTextContent();
           Income pemasukkan = new Income(tanggal, jumlah, deskripsi, kategori);
           in.add(pemasukkan);
-        }
-        Node isiRecordOut = recordListOut.item(idx);
-        if (isiRecordOut.getNodeType() == Node.ELEMENT_NODE) {
-          Element elRecord = (Element) isiRecordOut;
-          String tanggal = elRecord.getElementsByTagName("tanggal").item(0).getTextContent();
-          String jumlah = elRecord.getElementsByTagName("jumlah").item(0).getTextContent();
-          String deskripsi = elRecord.getElementsByTagName("deskripsi").item(0).getTextContent();
-          String kategori = elRecord.getElementsByTagName("kategori").item(0).getTextContent();
-          Expense pengeluaran = new Expense(tanggal, jumlah, deskripsi, kategori);
-          out.add(pengeluaran);
         }
       }      
       
