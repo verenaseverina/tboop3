@@ -1,5 +1,6 @@
 package financialrecords;
 
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import dateformat.DateLabelFormatter;
 import financialrecords.records.Record;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -9,9 +10,12 @@ import org.jdatepicker.impl.UtilDateModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Properties;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.text.DateFormatter;
 
 /**
@@ -74,7 +78,7 @@ public final class FinancialRecordView extends JFrame {
   /**
    * Atribut JButton untuk memilih hanya menampilkan satu minggu tabel.
    */
-  private JButton thisWeek = new JButton("This Week");
+  private JButton today = new JButton("Today");
   /**
    * Atribut JButton untuk memilih hanya menampilkan satu bulan tabel.
    */
@@ -87,7 +91,16 @@ public final class FinancialRecordView extends JFrame {
    * Atribut String untuk tanggal.
    */
   private String date = "";
+  /**
+   * Atribut Model Tabel.
+   */
+  private DefaultTableModel tabModel;
+  /**
+   * Atribut String tanggal.
+   */
+  private String tanggal;
 
+  
   /**
    * Prosedur untuk membuat frame untuk menambahkan Income.
    */
@@ -294,6 +307,7 @@ public final class FinancialRecordView extends JFrame {
     table.setVisible(true);
     setTableRecord(frmodel);
     table.add(finaltable);
+    sortTable();
     JScrollPane tableContainer = new JScrollPane(table);
 
     JPanel controlBar = new JPanel();
@@ -302,8 +316,8 @@ public final class FinancialRecordView extends JFrame {
     controlBar.setVisible(true);
     controlBar.setLayout(new GridLayout(1,0));
 
-    thisWeek.setAlignmentX(Component.CENTER_ALIGNMENT);
-    controlBar.add(thisWeek);
+    today.setAlignmentX(Component.CENTER_ALIGNMENT);
+    controlBar.add(today);
 
     thisMonth.setAlignmentX(Component.CENTER_ALIGNMENT);
     controlBar.add(thisMonth);
@@ -440,29 +454,25 @@ public final class FinancialRecordView extends JFrame {
   public void addDeleteButtonListener(ActionListener listenForAddDeleteButton) {
     addDeleteButton.addActionListener(listenForAddDeleteButton);
   }
-
-  /**
-   * Menambahkan listener untuk komponen.
-   * @param listenForAddThisWeekButton parameter untuk cek apakah terdapat Event
-   */
-  public void addThisWeekListener(ActionListener listenForAddThisWeekButton) {
-    thisWeek.addActionListener(listenForAddThisWeekButton);
+  
+  public void sortTable() {
+    TableRowSorter<TableModel> sorter = new TableRowSorter<>(finaltable.getModel());
+    finaltable.setRowSorter(sorter);
+    
+    ArrayList <RowSorter.SortKey> sortKeys = new ArrayList<>();
+    sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
+    sorter.setSortKeys(sortKeys); 
+    filterTable(sorter);
   }
-
-  /**
-   * Menambahkan listener untuk komponen.
-   * @param listenForAddThisMonthButton parameter untuk cek apakah terdapat Event
-   */
-  public void addThisMonthListener(ActionListener listenForAddThisMonthButton) {
-    thisMonth.addActionListener(listenForAddThisMonthButton);
+  
+  public void filterTable(TableRowSorter<TableModel> sorter) {
+    RowFilter<TableModel, Object> rf = null;
+    //If current expression doesn't parse, don't update.
+    try {
+        rf = RowFilter.regexFilter(tanggal,1);
+    } catch (java.util.regex.PatternSyntaxException e) {
+        return;
+    }
+    sorter.setRowFilter(rf);   
   }
-
-  /**
-   * Menambahkan listener untuk komponen.
-   * @param listenForAddThisYearButton parameter untuk cek apakah terdapat Event
-   */
-  public void addThisYearListener(ActionListener listenForAddThisYearButton) {
-    thisYear.addActionListener(listenForAddThisYearButton);
-  }
-
 }
