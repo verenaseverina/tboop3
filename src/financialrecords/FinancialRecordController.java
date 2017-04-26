@@ -93,31 +93,12 @@ public class FinancialRecordController {
       if(frview.getDate().equals(""))
         return;
       Expense tmp = new Expense(frview.getDate(),frview.getAmountTextField(),frview.getDescriptionTextField(),frview.getSelection());
-      Runnable task1 = new Runnable() {
-        @Override
-        public void run() {
-          addOutcome(tmp);
-          frmodel.saveData();
-          DefaultTableModel model = (DefaultTableModel) frview.getFinaltable().getModel();
-          model.addRow(new Object[]{"Expense",frview.getDate(), tmp.getAmount(), tmp.getDescription(),tmp.getCategory()});
-          incomeFrame.dispose();
-          frview.resetField();
-        }
-      };
-
-      Runnable task2 = new Runnable() {
-        @Override
-        public void run() {
-          frmodel.setBalance(frmodel.getBalance() - tmp.getAmount());
-        }
-      };
-
-      Thread thread1 = new Thread(task1);
-      Thread thread2 = new Thread(task2);
-
-      thread1.start();
-      thread2.start();
-
+      addOutcome(tmp);
+      frmodel.saveData();
+      DefaultTableModel model = (DefaultTableModel) frview.getFinaltable().getModel();
+      model.addRow(new Object[]{"Expense",frview.getDate(), tmp.getAmount(), tmp.getDescription(),tmp.getCategory()});
+      incomeFrame.dispose();
+      frview.resetField();
     }
   }
 
@@ -260,7 +241,6 @@ public class FinancialRecordController {
         }
       }
     }
-
     return idx;
   }
 
