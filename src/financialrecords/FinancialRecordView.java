@@ -29,7 +29,7 @@ public final class FinancialRecordView extends JFrame {
   private JButton thisWeek = new JButton("This Week");
   private JButton thisMonth = new JButton("This Month");
   private JButton thisYear = new JButton("This Year");
-  private String date;
+  private String date = "";
 
   private void addIncomeFrame() {
     JFrame frame = new JFrame();
@@ -88,6 +88,7 @@ public final class FinancialRecordView extends JFrame {
             }
     );
     panel.add(categoryList);
+    selection = "Salary";
 
     JLabel descriptionLabel = new JLabel("Description : ");
     panel.add(descriptionLabel);
@@ -159,6 +160,7 @@ public final class FinancialRecordView extends JFrame {
             }
     );
     panel.add(categoryList);
+    selection = "Food";
 
     JLabel descriptionLabel = new JLabel("Description : ");
     panel.add(descriptionLabel);
@@ -287,6 +289,13 @@ public final class FinancialRecordView extends JFrame {
     finaltable.setModel(tabModel);
   }
 
+  public void resetField(){
+    date = "";
+    descriptionTextField.setText("");
+    amountTextField.setText("");
+    selection = "";
+  }
+
   public String getAmountTextField() {
     return amountTextField.getText();
   }
@@ -301,6 +310,10 @@ public final class FinancialRecordView extends JFrame {
 
   public String getDate() {
     return date;
+  }
+
+  public JTable getFinaltable(){
+    return finaltable;
   }
 
   public void addIncButtonListener(ActionListener listenForAddIncomeButton) {
