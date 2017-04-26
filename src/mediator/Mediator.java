@@ -6,14 +6,34 @@ import setting.SettingController;
 import signin.SignInController;
 
 /**
- * Created by Winarto on 04/25/2017.
+ * Kelas Mediator untuk menghubungkan kelas-kelas controller.
+ * Kelas Mediator memiliki atribut FinancialRecordController, SettingController,
+ * SignInController, dan Parse
+ *
+ * @author Winarto
+ * @author Kukuh B R
  */
 public class Mediator {
+  /**
+   * Atribut FinancialRecordController.
+   */
   private FinancialRecordController frControl;
+  /**
+   * Atribut SettingController.
+   */
   private SettingController settingControl;
+  /**
+   * Atribut SignInController.
+   */
   private SignInController signInControl;
+  /**
+   * Atribut Parse.
+   */
   private Parse parser;
 
+  /**
+   * Constructor Mediator.
+   */
   public Mediator() {
     parser = new Parse();
     signInControl = new SignInController(this,parser);
@@ -22,7 +42,7 @@ public class Mediator {
   }
 
   /**
-   * Prosedur untuk menyimpan data pengeluaran dan pemasukan
+   * Prosedur untuk menyimpan data pengeluaran dan pemasukan.
    */
   public void saveSavings(int amount) {
     frControl.updateSavings(amount);
@@ -30,14 +50,14 @@ public class Mediator {
   }
 
   /**
-   * Prosedur untuk mengambil data pengeluaran dan pemasukan
+   * Prosedur untuk mengambil data pengeluaran dan pemasukan.
    */
   public long getSavings() {
     return frControl.getSavings();
   }
 
   /**
-   * Prosedur untuk menghapus semua pengeluaran dan pemasukan
+   * Prosedur untuk menghapus semua pengeluaran dan pemasukan.
    */
   public void deleteInOut(){
     for(int i=0;i<frControl.getOutcome().size();i++) {
@@ -51,28 +71,31 @@ public class Mediator {
   }
 
   /**
-   * Prosedur untuk mengambil id signin
+   * Getter signInId.
+   * @return signInId
    */
   public String getSignInID() {
     return signInControl.getSignInID();
   }
 
   /**
-   * Prosedur untuk mengambil password signin
+   * Getter signInPass.
+   * @return signInPass
    */
   public String getSignInPass() {
     return signInControl.getSignInPass();
   }
 
   /**
-   * Prosedur untuk mengambil deskripsi password
+   * Getter signInDesc.
+   * @return signInDesc
    */
   public String getSignInDesc() {
     return signInControl.getSignInDesc();
   }
 
   /**
-   * Menyimpan informasi signin
+   * Menyimpan informasi signin.
    * @param id Status dikunci atau tidak
    * @param pass Password untuk membuka aplikasi
    * @param desc Hint yang digunakan pengguna
@@ -82,7 +105,7 @@ public class Mediator {
   }
 
   /**
-   * Prosedur untuk menampilkan atau menyembunyikan tampilan setting
+   * Prosedur untuk menampilkan atau menyembunyikan tampilan setting.
    * @param state kondisi untuk menampilkan atau menyembunyikan
    */
   public void setSettingVisible(boolean state) {
@@ -90,7 +113,7 @@ public class Mediator {
   }
 
   /**
-   * Prosedur untuk menampilkan atau menyembunyikan tampilan sign in
+   * Prosedur untuk menampilkan atau menyembunyikan tampilan sign in.
    * @param state kondisi untuk menampilkan atau menyembunyikan
    */
   public void setSignInVisible(boolean state){
@@ -98,7 +121,7 @@ public class Mediator {
   }
 
   /**
-   * Prosedur untuk menampilkan atau menyembunyikan tampilan financial record
+   * Prosedur untuk menampilkan atau menyembunyikan tampilan financial record.
    * @param state kondisi untuk menampilkan atau menyembunyikan
    */
   public void setFrControlVisible(boolean state){
