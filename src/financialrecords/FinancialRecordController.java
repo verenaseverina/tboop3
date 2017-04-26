@@ -7,6 +7,8 @@ import financialrecords.records.recordderivative.Income;
 import mediator.Mediator;
 import parse.Parse;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -54,17 +56,34 @@ public class FinancialRecordController {
 
     class addIncomeListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
+      JButton addIncomeBtn = (JButton)e.getSource();
+      JFrame incomeFrame = (JFrame)addIncomeBtn.getRootPane().getParent();
+      if(frview.getDate().equals(""))
+        return;
       Income tmp = new Income(frview.getDate(),frview.getAmountTextField(),frview.getDescriptionTextField(),frview.getSelection());
       addIncome(tmp);
       frmodel.saveData();
-      frview.setTableRecord(frmodel);
+      DefaultTableModel model = (DefaultTableModel) frview.getFinaltable().getModel();
+      model.addRow(new Object[]{"Income",frview.getDate(), tmp.getAmount(), tmp.getDescription(),tmp.getCategory()});
+      incomeFrame.dispose();
+      frview.resetField();
     }
   }
 
   class addExpenseListener implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
-
+      JButton addIncomeBtn = (JButton)e.getSource();
+      JFrame incomeFrame = (JFrame)addIncomeBtn.getRootPane().getParent();
+      if(frview.getDate().equals(""))
+        return;
+      Expense tmp = new Expense(frview.getDate(),frview.getAmountTextField(),frview.getDescriptionTextField(),frview.getSelection());
+      addOutcome(tmp);
+      frmodel.saveData();
+      DefaultTableModel model = (DefaultTableModel) frview.getFinaltable().getModel();
+      model.addRow(new Object[]{"Expense",frview.getDate(), tmp.getAmount(), tmp.getDescription(),tmp.getCategory()});
+      incomeFrame.dispose();
+      frview.resetField();
     }
   }
 
@@ -78,7 +97,43 @@ public class FinancialRecordController {
   class addDeleteListener implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
-
+      int numRows = frview.getFinaltable().getSelectedRows().length;
+      DefaultTableModel model = (DefaultTableModel) frview.getFinaltable().getModel();
+      for(int i=0; i<numRows ; i++ ) {
+          boolean isIncome =(model.getValueAt(frview.getFinaltable().getSelectedRow(),0) == "Income");
+          boolean found = false;
+          int inIdx = 0;
+          String[] tmp = new String[4];
+          for (int idx = 0; idx < 4;idx++) {
+            tmp[idx] = String.valueOf(model.getValueAt(frview.getFinaltable().getSelectedRow(), idx + 1));
+            System.out.println(tmp[idx]);
+          }
+          while(inIdx<frmodel.getIncome().size() && !found){
+            boolean dateEqual,amountEqual,descEqual,catEqual;
+            if(isIncome) {
+              dateEqual = (tmp[0].equals(frmodel.getIncome().get(inIdx).getDate().toString()));
+              amountEqual = (tmp[1].equals(Long.toString(frmodel.getIncome().get(inIdx).getAmount())));
+              descEqual = (tmp[2].equals(frmodel.getIncome().get(inIdx).getDescription()));
+              catEqual = (tmp[3].equals(frmodel.getIncome().get(inIdx).getCategory()));
+            } else {
+              dateEqual = (tmp[0].equals(frmodel.getExpense().get(inIdx).getDate().toString()));
+              amountEqual = (tmp[1].equals(Long.toString(frmodel.getExpense().get(inIdx).getAmount())));
+              descEqual = (tmp[2].equals(frmodel.getExpense().get(inIdx).getDescription()));
+              catEqual = (tmp[3].equals(frmodel.getExpense().get(inIdx).getCategory()));
+            }
+            found = (dateEqual && amountEqual && descEqual && catEqual);
+          }
+          if(found) {
+            if(isIncome) {
+              deleteIncome(inIdx);
+              saveData();
+            } else {
+              deleteExpense(inIdx);
+              saveData();
+            }
+          }
+        model.removeRow(frview.getFinaltable().getSelectedRow());
+      }
     }
   }
 

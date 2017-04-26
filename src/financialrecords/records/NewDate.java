@@ -111,6 +111,16 @@ public class NewDate {
   }
 
   /**
+   * Mengembalikan format tanggal dd/mm/yyyy
+   * @return format tanggal dalam string
+   */
+  public String toString(){
+    String tmp;
+    tmp = day + "/" + month + "/" + year;
+    return tmp;
+  }
+
+  /**
    * Mengecek apakah dua tanggal berada di minggu yang sama.
    * @param date2 pembanding tanggal objek
    * @return apakah dua tanggal berada di minggu yang sama
