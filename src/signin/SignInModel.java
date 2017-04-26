@@ -120,7 +120,7 @@ public class SignInModel {
   }
 
   /**
-   * Method untuk update data global
+   * Method untuk update data global.
    */
   public void saveState(){
     String[] pass = new String[3];
