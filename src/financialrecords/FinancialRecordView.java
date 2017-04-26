@@ -101,7 +101,7 @@ public final class FinancialRecordView extends JFrame {
   /**
    * Atribut String tanggal.
    */
-  private String tanggal;
+  private String tanggal = "(.*)";
 
   
   /**
@@ -329,7 +329,14 @@ public final class FinancialRecordView extends JFrame {
         String month = Integer.toString(localDate.getMonthValue());
         String year = Integer.toString(localDate.getYear());
         String day = Integer.toString(localDate.getDayOfMonth());
-        tanggal = year + "/" + month + "/" + day;
+        if (month.length() == 1) {
+          month = "0" + month;
+        }
+        if (day.length() == 1) {
+          day = "0" + day;
+        }
+        tanggal = day + "/" + month + "/" + year;
+        sortTable();
       }
     });
 
@@ -342,7 +349,11 @@ public final class FinancialRecordView extends JFrame {
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         String month = Integer.toString(localDate.getMonthValue());
         String year = Integer.toString(localDate.getYear());
-        tanggal = year + "/" + month + "/.*";
+        if (month.length() == 1) {
+          month = "0" + month;
+        }
+        tanggal = "(.*)" + "/" + month + "/" + year;
+        sortTable();
       }
     });
 
@@ -354,7 +365,8 @@ public final class FinancialRecordView extends JFrame {
         Date date = new Date();
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         String year = Integer.toString(localDate.getYear());
-        tanggal = year + "/.*";
+        tanggal = "(.*)" + year;
+        sortTable();
       }
     });
 
