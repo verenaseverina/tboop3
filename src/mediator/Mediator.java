@@ -2,6 +2,7 @@ package mediator;
 
 import financialrecords.FinancialRecordController;
 import parse.Parse;
+import parse.ParseExc;
 import setting.SettingController;
 import signin.SignInController;
 
@@ -34,7 +35,7 @@ public class Mediator {
   /**
    * Constructor Mediator.
    */
-  public Mediator() {
+  public Mediator() throws ParseExc {
     parser = new Parse();
     signInControl = new SignInController(this,parser);
     frControl = new FinancialRecordController(this,parser);
@@ -66,6 +67,7 @@ public class Mediator {
     for(int i=0;i<frControl.getIncome().size();i++) {
       frControl.deleteIncome(i);
     }
+    frControl.deleteTable();
     frControl.updateSavings(0);
     frControl.saveData();
   }

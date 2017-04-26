@@ -73,7 +73,7 @@ public final class FinancialRecordView extends JFrame {
   /**
    * Atribut JButton untuk melakukan update.
    */
-  private JButton addUpdateButton = new JButton("Update Record");
+  private JButton addSettingsButton = new JButton("Settings");
   /**
    * Atribut JButton untuk melakukan penghapusan Record.
    */
@@ -257,7 +257,7 @@ public final class FinancialRecordView extends JFrame {
    * @param frmodel parameter FinancialRecordModel
    */
   public FinancialRecordView(final FinancialRecordModel frmodel) {
-    this.setVisible(true);
+    //this.setVisible(true);
     this.setResizable(true);
     this.setLocationRelativeTo(null);
     this.setSize(width,height);
@@ -295,13 +295,13 @@ public final class FinancialRecordView extends JFrame {
             }
     );
 
-    addUpdateButton.setBackground(Color.white);
-    addUpdateButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    controls.add(addUpdateButton);
-
     addDeleteButton.setBackground(Color.white);
     addDeleteButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     controls.add(addDeleteButton);
+    
+    addSettingsButton.setBackground(Color.white);
+    addSettingsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    controls.add(addSettingsButton);
     
     JPanel table = new JPanel();
     table.setLayout(new BorderLayout());
@@ -488,8 +488,8 @@ public final class FinancialRecordView extends JFrame {
    * Menambahkan listener untuk komponen.
    * @param listenForAddUpdateButton parameter untuk cek apakah terdapat Event
    */
-  public void addUpdateButtonListener(ActionListener listenForAddUpdateButton) {
-    addUpdateButton.addActionListener(listenForAddUpdateButton);
+  public void addSettingsButtonListener(ActionListener listenForAddUpdateButton) {
+    addSettingsButton.addActionListener(listenForAddUpdateButton);
   }
 
   /**

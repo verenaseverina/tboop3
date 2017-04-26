@@ -5,6 +5,18 @@
     <deskripsi>nama saya</deskripsi>
   </lock>
   <tabungan id="1">
-    <jumlah>300000</jumlah>
+    <jumlah>0</jumlah>
   </tabungan>
+  <recordin id="639311360">
+    <tanggal>04/04/2017</tanggal>
+    <jumlah>3000000</jumlah>
+    <deskripsi>balbalbla</deskripsi>
+    <kategori>Makanan</kategori>
+  </recordin>
+  <recordin id="639311360">
+    <tanggal>04/04/2017</tanggal>
+    <jumlah>3000000</jumlah>
+    <deskripsi>balbalbla</deskripsi>
+    <kategori>Makanan</kategori>
+  </recordin>
 </buku>

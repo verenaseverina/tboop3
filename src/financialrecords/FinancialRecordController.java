@@ -47,7 +47,7 @@ public class FinancialRecordController {
 
     this.frview.addIncButtonListener(new addIncomeListener());
     this.frview.addExpButtonListener(new addExpenseListener());
-    this.frview.addUpdateButtonListener(new addUpdateListener());
+    this.frview.addSettingsButtonListener(new addSettingsListener());
     this.frview.addDeleteButtonListener(new addDeleteListener());
   }
 
@@ -121,10 +121,10 @@ public class FinancialRecordController {
     }
   }
 
-  class addUpdateListener implements ActionListener {
+  class addSettingsListener implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
-
+       med.setSettingVisible(true);
     }
   }
 
@@ -401,5 +401,16 @@ public class FinancialRecordController {
    */
   public void saveData(){
     frmodel.saveData();
+  }
+  
+  /**
+   * Menghapus isi tabel
+   */
+  public void deleteTable(){
+      int numRows = frview.getFinaltable().getRowCount();
+      DefaultTableModel model = (DefaultTableModel) frview.getFinaltable().getModel();
+      for (int i = 0; i < numRows; i++) {
+        model.removeRow(0);
+      }
   }
 }

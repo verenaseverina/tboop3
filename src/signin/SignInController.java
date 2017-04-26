@@ -50,11 +50,13 @@ public class SignInController {
 
     public void actionPerformed(ActionEvent e) {
       if (validatePassword(signInV.getInputPassword())) {
+        med.setFrControlVisible(true);
         signInV.closeWindow();
         // ini manggil windowsnya gimana
       } else {
-        signInV.setTxt(signInM.getDescription());
-        signInV.showAlert();
+        signInV.getHint().setText(signInM.getDescription());
+        signInV.getHint().setVisible(true);
+        signInV.getPassword().setText("");
       }
     }
   }

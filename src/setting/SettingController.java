@@ -30,8 +30,7 @@ public class SettingController {
     med = _med;
     if(settingV == null)
       settingV = new SettingView();
-
-    settingV.setVisible(true);
+    
     settingV.getCheckBoxLock().setSelected(med.getSignInID().equals("1"));
     if(settingV.getCheckBoxLock().isSelected()) {
       settingV.getHint().setEditable(true);

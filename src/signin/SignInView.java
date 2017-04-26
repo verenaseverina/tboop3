@@ -106,6 +106,22 @@ public class SignInView extends JFrame {
   }
 
   /**
+   * Getter objek password field
+   * @return Objek password field
+   */
+  public JPasswordField getPassword(){
+    return inputPassword;
+  }
+  
+  /**
+   * Getter label hint
+   * @return Objek label hint
+   */
+  public JLabel getHint(){
+    return hint;
+  }
+  
+  /**
    * Setter hint.
    * @param text adalah hint yang akan dimunculkan
    */
