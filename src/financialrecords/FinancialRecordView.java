@@ -14,23 +14,83 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DateFormatter;
 
+/**
+ * Kelas view untuk FinancialRecord.
+ * Kelas ini memiliki atribut integer untuk width frame, integer untuk height frame,
+ * JTable untuk tabel yang berisi Record, JButton untuk menambah Record Income,
+ * JButton untuk menambah Record Expense, JTextField untuk mengisi amount,
+ * String untuk menghasilkan hasil pemilihan JComboBox,
+ * JTextField untuk mengisi description, JButton untuk melakukan update,
+ * JButton untuk melakukan penghapusan Record,
+ * JButton untuk memilih hanya menampilkan satu minggu tabel,
+ * JButton untuk memilih hanya menampilkan satu bulan tabel,
+ * JButton untuk memilih hanya menampilkan satu tahun tabel,
+ *
+ *
+ * @author Winarto
+ * @author Adrian Hartarto
+ */
 public final class FinancialRecordView extends JFrame {
-  // bisa tambahin ga dia lagi nampilin apaan
+  /**
+   * Atribut integer untuk width frame.
+   */
   private int width = 750;
+  /**
+   * Atribut integer untuk height frame.
+   */
   private int height = 500;
+  /**
+   * Atribut JTable untuk tabel yang berisi Record.
+   */
   private JTable finaltable;
+  /**
+   * Atribut JButton untuk menambah Record Income.
+   */
   private JButton addIncButton = new JButton(" Add Income ");
+  /**
+   * Atribut JButton untuk menambah Record Expense.
+   */
   private JButton addExpButton = new JButton("Add Expense");
+  /**
+   * Atribut JTextField untuk mengisi amount.
+   */
   private JTextField amountTextField = new JTextField();
+  /**
+   * Atribut String untuk menghasilkan hasil pemilihan JComboBox.
+   */
   private String selection;
+  /**
+   * Atribut JTextField untuk mengisi description.
+   */
   private JTextField descriptionTextField = new JTextField();
+  /**
+   * Atribut JButton untuk melakukan update.
+   */
   private JButton addUpdateButton = new JButton("Update Record");
+  /**
+   * Atribut JButton untuk melakukan penghapusan Record.
+   */
   private JButton addDeleteButton = new JButton("Delete Record");
+  /**
+   * Atribut JButton untuk memilih hanya menampilkan satu minggu tabel.
+   */
   private JButton thisWeek = new JButton("This Week");
+  /**
+   * Atribut JButton untuk memilih hanya menampilkan satu bulan tabel.
+   */
   private JButton thisMonth = new JButton("This Month");
+  /**
+   * Atribut JButton untuk memilih hanya menampilkan satu tahun tabel.
+   */
   private JButton thisYear = new JButton("This Year");
+  /**
+   * Atribut String untuk tanggal.
+   */
   private String date = "";
 
+  /**
+   * Prosedur untuk membuat frame untuk menambahkan Income.
+   */
   private void addIncomeFrame() {
     JFrame frame = new JFrame();
     frame.setVisible(true);
@@ -101,6 +161,9 @@ public final class FinancialRecordView extends JFrame {
     frame.add(panel);
   }
 
+  /**
+   * Prosedur untuk membuat frame untuk menambahkan Expense.
+   */
   private void addExpenseFrame() {
     JFrame frame = new JFrame();
     frame.setVisible(true);
@@ -173,7 +236,10 @@ public final class FinancialRecordView extends JFrame {
     frame.add(panel);
   }
 
-
+  /**
+   * Constructor FinancialRecordView.
+   * @param frmodel parameter FinancialRecordModel
+   */
   public FinancialRecordView(final FinancialRecordModel frmodel) {
     this.setVisible(true);
     this.setResizable(true);
@@ -258,7 +324,11 @@ public final class FinancialRecordView extends JFrame {
 
     this.add(splitPane2);
   }
-  
+
+  /**
+   * Setter table record.
+   * @param frmodel adalah FinancialRecordModel
+   */
   public void setTableRecord(final FinancialRecordModel frmodel) {
 
     
@@ -289,6 +359,9 @@ public final class FinancialRecordView extends JFrame {
     finaltable.setModel(tabModel);
   }
 
+  /**
+   * Prosedur untuk mengosongkan semua TextField.
+   */
   public void resetField(){
     date = "";
     descriptionTextField.setText("");
@@ -296,50 +369,98 @@ public final class FinancialRecordView extends JFrame {
     selection = "";
   }
 
+  /**
+   * Getter amountTextField.
+   * @return amountTextField
+   */
   public String getAmountTextField() {
     return amountTextField.getText();
   }
 
+  /**
+   * Getter descriptionTextField.
+   * @return descriptionTextField
+   */
   public String getDescriptionTextField() {
     return descriptionTextField.getText();
   }
 
+  /**
+   * Getter selection.
+   * @return selection
+   */
   public String getSelection() {
     return selection;
   }
 
+  /**
+   * Getter date.
+   * @return date
+   */
   public String getDate() {
     return date;
   }
 
+  /**
+   * Getter finaltable.
+   * @return finaltable
+   */
   public JTable getFinaltable(){
     return finaltable;
   }
 
+  /**
+   * Menambahkan listener untuk komponen.
+   * @param listenForAddIncomeButton parameter untuk cek apakah terdapat Event
+   */
   public void addIncButtonListener(ActionListener listenForAddIncomeButton) {
     addIncButton.addActionListener(listenForAddIncomeButton);
   }
 
+  /**
+   * Menambahkan listener untuk komponen.
+   * @param listenForAddExpenseButton parameter untuk cek apakah terdapat Event
+   */
   public void addExpButtonListener(ActionListener listenForAddExpenseButton) {
     addExpButton.addActionListener(listenForAddExpenseButton);
   }
 
+  /**
+   * Menambahkan listener untuk komponen.
+   * @param listenForAddUpdateButton parameter untuk cek apakah terdapat Event
+   */
   public void addUpdateButtonListener(ActionListener listenForAddUpdateButton) {
     addUpdateButton.addActionListener(listenForAddUpdateButton);
   }
 
+  /**
+   * Menambahkan listener untuk komponen.
+   * @param listenForAddDeleteButton parameter untuk cek apakah terdapat Event
+   */
   public void addDeleteButtonListener(ActionListener listenForAddDeleteButton) {
     addDeleteButton.addActionListener(listenForAddDeleteButton);
   }
 
+  /**
+   * Menambahkan listener untuk komponen.
+   * @param listenForAddThisWeekButton parameter untuk cek apakah terdapat Event
+   */
   public void addThisWeekListener(ActionListener listenForAddThisWeekButton) {
     thisWeek.addActionListener(listenForAddThisWeekButton);
   }
 
+  /**
+   * Menambahkan listener untuk komponen.
+   * @param listenForAddThisMonthButton parameter untuk cek apakah terdapat Event
+   */
   public void addThisMonthListener(ActionListener listenForAddThisMonthButton) {
     thisMonth.addActionListener(listenForAddThisMonthButton);
   }
 
+  /**
+   * Menambahkan listener untuk komponen.
+   * @param listenForAddThisYearButton parameter untuk cek apakah terdapat Event
+   */
   public void addThisYearListener(ActionListener listenForAddThisYearButton) {
     thisYear.addActionListener(listenForAddThisYearButton);
   }
